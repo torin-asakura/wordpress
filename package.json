@@ -1,0 +1,11 @@
+{
+  "name": "@torin-asakura/wordpress",
+  "version": "0.0.1",
+  "description": "Wordpress Custom Russian Build",
+  "repository": "https://github.com/torin-asakura/wordpress.git",
+  "author": "Andrew Ghostuhin <me@torinasakura.name>",
+  "license": "BSD 3.0",
+  "scripts": {
+    "commit": "git-cz"
+  }
+}

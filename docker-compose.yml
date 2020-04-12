@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  traefik:
+    image: torinasakura/traefik:wp
+    command: --api --docker
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      default:
+        aliases:
+          - traefik-wp
+      traefik-bo:
+        ipv4_address: 172.16.124.99
