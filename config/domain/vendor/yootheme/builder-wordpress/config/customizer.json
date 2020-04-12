@@ -1,0 +1,77 @@
+{
+    "sections": {
+        "builder": {
+            "help": {
+                "Builder": [
+                    {
+                        "title": "Using the Page Builder",
+                        "src": "https://www.youtube-nocookie.com/watch?v=kJm4Vu9PKXQ&amp;list=PLrqT0WH0HPdM3qcWFqRRj_SOZ80ze0nKj",
+                        "duration": "1:32",
+                        "documentation": "support/yootheme-pro/wordpress/pages-and-posts#pages",
+                        "support": "support/search?tags=125&q=builder"
+                    },
+                    {
+                        "title": "Using the Post Builder",
+                        "src": "https://www.youtube-nocookie.com/watch?v=fHs5nAZ1L9k&amp;list=PLrqT0WH0HPdM3qcWFqRRj_SOZ80ze0nKj",
+                        "duration": "2:37",
+                        "documentation": "support/yootheme-pro/wordpress/pages-and-posts#posts",
+                        "support": "support/search?tags=125&q=builder"
+                    },
+                    {
+                        "title": "Collapsing Layouts",
+                        "src": "https://www.youtube-nocookie.com/watch?v=3Vqe94SZeHM&amp;list=PLrqT0WH0HPdM3qcWFqRRj_SOZ80ze0nKj",
+                        "duration": "0:00",
+                        "documentation": "support/yootheme-pro/wordpress/collapsing-layouts",
+                        "support": "support/search?tags=125&q=collapsing"
+                    }
+                ],
+                "Images and Links": [
+                    {
+                        "title": "Using Images",
+                        "src": "https://www.youtube-nocookie.com/watch?v=VRteZRW2HNo&amp;list=PLrqT0WH0HPdM3qcWFqRRj_SOZ80ze0nKj",
+                        "duration": "1:12",
+                        "documentation": "support/yootheme-pro/wordpress/files-and-images#images",
+                        "support": "support/search?tags=125&q=image%20field"
+                    },
+                    {
+                        "title": "Using Links",
+                        "src": "https://www.youtube-nocookie.com/watch?v=a0pbwsF86-g&amp;list=PLrqT0WH0HPdM3qcWFqRRj_SOZ80ze0nKj",
+                        "duration": "0:40",
+                        "documentation": "support/yootheme-pro/wordpress/files-and-images#links",
+                        "support": "support/search?tags=125&q=link%20field"
+                    },
+                    {
+                        "title": "Using the Media Manager",
+                        "src": "https://www.youtube-nocookie.com/watch?v=ELnpkZcQEBE&amp;list=PLrqT0WH0HPdM3qcWFqRRj_SOZ80ze0nKj",
+                        "duration": "0:26",
+                        "documentation": "support/yootheme-pro/wordpress/files-and-images#media-manager",
+                        "support": "support/search?tags=125&q=media%20manager"
+                    },
+                    {
+                        "title": "Using the Unsplash Library",
+                        "src": "https://www.youtube-nocookie.com/watch?v=0cgrc7HORj0&amp;list=PLrqT0WH0HPdM3qcWFqRRj_SOZ80ze0nKj",
+                        "duration": "1:49",
+                        "documentation": "support/yootheme-pro/wordpress/files-and-images#unsplash-library",
+                        "support": "support/search?tags=125&q=unsplash"
+                    }
+                ],
+                "Elements": [
+                    {
+                        "title": "The Widget Element",
+                        "src": "https://www.youtube-nocookie.com/watch?v=tBYKDi9S9MI&amp;list=PLrqT0WH0HPdM3qcWFqRRj_SOZ80ze0nKj",
+                        "duration": "2:00",
+                        "documentation": "support/yootheme-pro/wordpress/system-elements#widget-element",
+                        "support": "support/search?tags=125&q=widget%20element"
+                    },
+                    {
+                        "title": "The Area Element",
+                        "src": "https://www.youtube-nocookie.com/watch?v=wpV6Ll_wT_Y&amp;list=PLrqT0WH0HPdM3qcWFqRRj_SOZ80ze0nKj",
+                        "duration": "1:58",
+                        "documentation": "support/yootheme-pro/wordpress/system-elements#area-element",
+                        "support": "support/search?tags=125&q=area%20element"
+                    }
+                ]
+            }
+        }
+    }
+}
