@@ -37,12 +37,11 @@ wp core install \
     --admin_email="$WORDPRESS_ADMIN_EMAIL" \
     --skip-email
 
-if [ ! -d /var/www/html/wp-content/themes/yootheme ]; then
-  cp -r /opt/default-theme /var/www/html/wp-content/themes
-fi
+cp -r /opt/yootheme /var/www/html/wp-content/themes
+cp -r /opt/default-theme /var/www/html/wp-content/themes
 
 wp theme activate yootheme
-wp theme delete twentysixteen twentyseventeen twentynineteen
+wp theme delete twentysixteen twentyseventeen twentynineteen twentytwenty
 
 wp config set WP_AUTO_UPDATE_CORE false
 
