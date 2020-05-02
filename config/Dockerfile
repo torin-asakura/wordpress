@@ -33,4 +33,4 @@ ENV PATH="/var/www/.composer/vendor/bin:${PATH}"
 
 ADD --chown=www-data ./install.sh /usr/local/bin/install_wordpress
 COPY --chown=www-data ./domain /opt/yootheme
-COPY --chown=www-data ./theme /opt/theme
+COPY --chown=www-data ./theme /opt/default-theme

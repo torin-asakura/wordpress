@@ -14,5 +14,64 @@ services:
       default:
         aliases:
           - traefik-wp
-      traefik-bo:
-        ipv4_address: 172.16.124.99
+      traefik-wp:
+        ipv4_address: 172.16.233.99
+
+  wordpress-db:
+    image: mariadb
+    volumes:
+      - './.data/mysql:/var/lib/mysql'
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=wordpress
+
+  wordpress-fpm:
+    build: ./config
+    command: bash -c 'install_wordpress && docker-entrypoint.sh php-fpm'
+    user: www-data
+    working_dir: /var/www/html
+    environment:
+      WORDPRESS_ADMIN_USER: admin
+      WORDPRESS_ADMIN_PASSWORD: password
+      WORDPRESS_ADMIN_EMAIL: me@torinasakura.name
+      WORDPRESS_DB_HOST: wordpress-db
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_TITLE: Project Starter
+      WORDPRESS_URL: https://wp.local.torinasakura.dev
+      WORDPRESS_PREVIEW_URL: https://preview.wp.local.torinasakura.dev
+    volumes:
+      - ./wordpress:/var/www/html
+    depends_on:
+      - traefik
+      - wordpress-db
+    networks:
+      - default
+      - traefik-wp
+
+  wordpress:
+    image: nginx
+    volumes:
+      - ./wordpress:/var/www/html
+      - ./config/wordpress/nginx.conf:/etc/nginx/conf.d/default.conf
+    labels:
+      - 'traefik.frontend.rule=Host:wp.local.torinasakura.dev'
+      - 'traefik.protocol=http'
+      - 'traefik.port=80'
+    depends_on:
+      - traefik
+      - wordpress-fpm
+    networks:
+      - default
+      - traefik-wp
+
+networks:
+  traefik-wp:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.233.0/24

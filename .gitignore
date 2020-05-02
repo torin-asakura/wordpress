@@ -1,4 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea/$CACHE_FILE$
-.idea/.gitignore
-.idea/dictionaries
+.idea
+
+# mysql data
+.data
+
+# wordpress
+/wordpress
