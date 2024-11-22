@@ -18,7 +18,7 @@ namespace YOOtheme;
         <?php printf(__('Written by %s on %s.', 'yootheme'), get_post_author(), get_post_date()) ?>
 
         <?php
-            if ($categories = get_the_category_list(__(', '))) {
+            if ($categories = get_the_category_list(wp_get_list_item_separator())) {
                 printf(__('Posted in %1$s.', 'yootheme'), $categories);
             }
         ?>
@@ -28,11 +28,5 @@ namespace YOOtheme;
     <div class="uk-margin-medium">
         <?php the_excerpt() ?>
     </div>
-
-    <?php if ($edit = get_edit_post_link()) : ?>
-    <p>
-        <a href="<?= esc_url($edit) ?>"><?= sprintf(__('%1$s Edit', 'yootheme'), '<span uk-icon="pencil"></span>') ?></a>
-    </p>
-    <?php endif ?>
 
 </article>

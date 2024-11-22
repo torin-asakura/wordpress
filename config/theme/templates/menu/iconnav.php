@@ -20,6 +20,11 @@ foreach ($items as $item) {
         $attrs['class'][] = 'uk-active';
     }
 
+    // Don't set for iconnav
+    if ($level == 1) {
+        $config->set("$menuitem.image_only", true);
+    }
+
     // Title
     $title = $item->title;
 
@@ -42,14 +47,14 @@ foreach ($items as $item) {
 
     // Markup
     if ($title && $subtitle && $image) {
-        $title = "<div class=\"uk-grid uk-grid-small" . ($level >= 1 && ($config("$menuposition.image_align") == 'center') ? ' uk-flex-middle' : '') . "\"><div class=\"uk-width-auto\">{$image}</div><div class=\"uk-width-expand\">{$title}</div></div>";
+        $title = "<div class=\"uk-grid uk-grid-small uk-flex-middle\"><div class=\"uk-width-auto\">{$image}</div><div class=\"uk-width-expand\">{$title}</div></div>";
     } elseif ($title && $subtitle) {
         $title = "<div>{$title}</div>";
     } elseif ($image) {
         $title = "{$image} {$title}";
     }
 
-    // Header
+    // Heading
     if ($item->type === 'heading') {
 
         if (!$children && $level == 1) {
