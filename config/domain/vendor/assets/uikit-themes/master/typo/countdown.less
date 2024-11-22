@@ -14,12 +14,14 @@
 @countdown-item-letter-spacing:                 inherit;
 @countdown-item-font-style:                     inherit;
 
-@countdown-label-font-size:                     @global-font-size;
+@countdown-label-font-size:                     @global-small-font-size;
+@countdown-label-font-size-s:                   @global-font-size;
 @countdown-label-color:                         @global-muted-color;
 @countdown-label-font-family:                   inherit;
 @countdown-label-font-weight:                   inherit;
 @countdown-label-text-transform:                inherit;
 @countdown-label-letter-spacing:                inherit;
+@countdown-label-letter-spacing-s:              @countdown-label-letter-spacing;
 @countdown-label-font-style:                    inherit;
 
 
@@ -100,6 +102,19 @@
 // ========================================================================
 
 .hook-countdown-misc() {}
+
+.hook-countdown-misc() when not (@countdown-label-font-size-s = @countdown-label-font-size),
+                            not (@countdown-label-letter-spacing-s = @countdown-label-letter-spacing) {
+
+    /* Phone landscape and bigger */
+    @media (min-width: @breakpoint-small) {
+
+        .uk-countdown-label when not (@countdown-label-font-size-s = @countdown-label-font-size) { font-size: @countdown-label-font-size-s; }
+        .uk-countdown-label when not (@countdown-label-letter-spacing-s = @countdown-label-letter-spacing) { letter-spacing: @countdown-label-letter-spacing-s; }
+
+    }
+
+}
 
 
 // Inverse

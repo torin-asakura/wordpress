@@ -53,5 +53,9 @@
 // Inverse
 // ========================================================================
 
-.hook-inverse-label() {}
+@inverse-label-box-shadow:                      none;
+
+.hook-inverse-label() when not (@label-box-shadow = none) {
+    box-shadow: @inverse-label-box-shadow;
+}
 .hook-inverse-label-hover() {}

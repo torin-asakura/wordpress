@@ -13,6 +13,10 @@
 
 @form-box-shadow:                               none;
 @form-focus-box-shadow:                         none;
+@form-disabled-box-shadow:                      none;
+
+@form-danger-box-shadow:                        none;
+@form-success-box-shadow:                       none;
 
 @form-blank-focus-box-shadow:                   none;
 
@@ -32,19 +36,25 @@
 
 .hook-form-multi-line() {}
 
-.hook-form-focus() when not (@form-focus-box-shadow = none) {
+.hook-form-focus() when not (@form-focus-box-shadow = @form-box-shadow) {
     box-shadow: @form-focus-box-shadow;
 }
 
-.hook-form-disabled() { box-shadow: none; }
+.hook-form-disabled() when not (@form-box-shadow = none) {
+    box-shadow: @form-disabled-box-shadow;
+}
 
 
 // Style modifiers
 // ========================================================================
 
-.hook-form-danger() {}
+.hook-form-danger() when not (@form-danger-box-shadow = none) {
+    box-shadow: @form-danger-box-shadow;
+}
 
-.hook-form-success() {}
+.hook-form-success() when not (@form-success-box-shadow = none) {
+    box-shadow: @form-success-box-shadow;
+}
 
 .hook-form-blank() when not (@form-box-shadow = none) {
     box-shadow: none;
@@ -70,7 +80,7 @@
     box-shadow: @form-radio-checked-box-shadow;
 }
 
-.hook-form-radio-checked-focus() { }
+.hook-form-radio-checked-focus() {}
 
 .hook-form-radio-disabled() when not (@form-radio-box-shadow = none) {
     box-shadow: none;
@@ -97,6 +107,12 @@
 .hook-form-horizontal-label() {}
 
 
+// Icon
+// ========================================================================
+
+.hook-form-icon() {}
+
+
 // Miscellaneous
 // ========================================================================
 
@@ -106,13 +122,32 @@
 // Inverse
 // ========================================================================
 
-.hook-inverse-form() {}
-.hook-inverse-form-focus() {}
+@inverse-form-box-shadow:                       none;
+@inverse-form-focus-box-shadow:                 none;
 
-.hook-inverse-form-radio() {}
-.hook-inverse-form-radio-focus() {}
+@inverse-form-radio-box-shadow:                 none;
+@inverse-form-radio-focus-box-shadow:           none;
+@inverse-form-radio-checked-box-shadow:         none;
 
-.hook-inverse-form-radio-checked() {}
+.hook-inverse-form() when not (@form-box-shadow = none) {
+    box-shadow: @inverse-form-box-shadow;
+}
+.hook-inverse-form-focus() when not (@form-focus-box-shadow = none) {
+    box-shadow: @inverse-form-focus-box-shadow;
+}
+
+.hook-inverse-form-radio() when not (@form-radio-box-shadow = none) {
+    box-shadow: @inverse-form-radio-box-shadow;
+}
+.hook-inverse-form-radio-focus() when not (@form-radio-focus-box-shadow = none) {
+    box-shadow: @inverse-form-radio-focus-box-shadow;
+}
+
+.hook-inverse-form-radio-checked() when not (@form-radio-checked-box-shadow = none) {
+    box-shadow: @inverse-form-radio-checked-box-shadow;
+}
 .hook-inverse-form-radio-checked-focus() {}
 
 .hook-inverse-form-label() {}
+
+.hook-inverse-form-icon() {}

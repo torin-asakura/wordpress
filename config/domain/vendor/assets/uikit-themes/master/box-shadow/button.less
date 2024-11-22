@@ -13,15 +13,19 @@
 
 @button-default-box-shadow:                     none;
 @button-default-hover-box-shadow:               none;
+@button-default-active-box-shadow:              none;
 
 @button-primary-box-shadow:                     none;
 @button-primary-hover-box-shadow:               none;
+@button-primary-active-box-shadow:              none;
 
 @button-secondary-box-shadow:                   none;
 @button-secondary-hover-box-shadow:             none;
+@button-secondary-active-box-shadow:            none;
 
 @button-danger-box-shadow:                      none;
 @button-danger-hover-box-shadow:                none;
+@button-danger-active-box-shadow:               none;
 
 
 // Component
@@ -30,8 +34,6 @@
 .hook-button() {}
 
 .hook-button-hover() {}
-
-.hook-button-focus() {}
 
 .hook-button-active() {}
 
@@ -47,7 +49,9 @@
     box-shadow: @button-default-hover-box-shadow;
 }
 
-.hook-button-default-active() {}
+.hook-button-default-active() when not (@button-default-active-box-shadow = none) {
+    box-shadow: @button-default-active-box-shadow;
+}
 
 //
 // Primary
@@ -61,7 +65,9 @@
     box-shadow: @button-primary-hover-box-shadow;
 }
 
-.hook-button-primary-active() {}
+.hook-button-primary-active() when not (@button-primary-active-box-shadow = none) {
+    box-shadow: @button-primary-active-box-shadow;
+}
 
 //
 // Secondary
@@ -75,7 +81,9 @@
     box-shadow: @button-secondary-hover-box-shadow;
 }
 
-.hook-button-secondary-active() {}
+.hook-button-secondary-active() when not (@button-secondary-active-box-shadow = none) {
+    box-shadow: @button-secondary-active-box-shadow;
+}
 
 //
 // Danger
@@ -89,7 +97,9 @@
     box-shadow: @button-danger-hover-box-shadow;
 }
 
-.hook-button-danger-active() {}
+.hook-button-danger-active() when not (@button-danger-active-box-shadow = none) {
+    box-shadow: @button-danger-active-box-shadow;
+}
 
 
 // Disabled
@@ -131,29 +141,47 @@
 // Inverse
 // ========================================================================
 
+@inverse-button-default-box-shadow:             none;
+@inverse-button-default-hover-box-shadow:       none;
+@inverse-button-default-active-box-shadow:      none;
+
+@inverse-button-primary-box-shadow:             none;
+@inverse-button-primary-hover-box-shadow:       none;
+@inverse-button-primary-active-box-shadow:      none;
+
+@inverse-button-secondary-box-shadow:           none;
+@inverse-button-secondary-hover-box-shadow:     none;
+@inverse-button-secondary-active-box-shadow:    none;
+
 .hook-inverse-button-default() when not (@button-default-box-shadow = none) {
-    box-shadow: none
+    box-shadow: @inverse-button-default-box-shadow;
 }
 .hook-inverse-button-default-hover() when not (@button-default-hover-box-shadow = none) {
-    box-shadow: none
+    box-shadow: @inverse-button-default-hover-box-shadow;
 }
-.hook-inverse-button-default-active() {}
+.hook-inverse-button-default-active() when not (@button-default-active-box-shadow = none) {
+    box-shadow: @inverse-button-default-active-box-shadow;
+}
 
 .hook-inverse-button-primary() when not (@button-primary-box-shadow = none) {
-    box-shadow: none
+    box-shadow: @inverse-button-primary-box-shadow;
 }
 .hook-inverse-button-primary-hover() when not (@button-primary-hover-box-shadow = none) {
-    box-shadow: none
+    box-shadow: @inverse-button-primary-hover-box-shadow;
 }
-.hook-inverse-button-primary-active() {}
+.hook-inverse-button-primary-active() when not (@button-primary-active-box-shadow = none) {
+    box-shadow: @inverse-button-primary-active-box-shadow;
+}
 
 .hook-inverse-button-secondary() when not (@button-secondary-box-shadow = none) {
-    box-shadow: none
+    box-shadow: @inverse-button-secondary-box-shadow;
 }
 .hook-inverse-button-secondary-hover() when not (@button-secondary-hover-box-shadow = none) {
-    box-shadow: none
+    box-shadow: @inverse-button-secondary-hover-box-shadow;
 }
-.hook-inverse-button-secondary-active() {}
+.hook-inverse-button-secondary-active() when not (@button-secondary-active-box-shadow = none) {
+    box-shadow: @inverse-button-secondary-active-box-shadow;
+}
 
 .hook-inverse-button-text() {}
 .hook-inverse-button-text-hover() {}

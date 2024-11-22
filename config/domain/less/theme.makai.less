@@ -4,42 +4,42 @@ Name: Makai
 Background: White
 Color: Blue
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/makai/styles/default.jpg
+Preview: https://yootheme.com/api/style/makai/default.jpg
 
 Style: white-orange
 Name: White Orange
 Background: White
 Color: Orange
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/makai/styles/white-orange.jpg
+Preview: https://yootheme.com/api/style/makai/white-orange.jpg
 
 Style: white-pink
 Name: White Pink
 Background: White
 Color: Pink
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/makai/styles/white-pink.jpg
+Preview: https://yootheme.com/api/style/makai/white-pink.jpg
 
 Style: white-green
 Name: White Green
 Background: White
 Color: Green
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/makai/styles/white-green.jpg
+Preview: https://yootheme.com/api/style/makai/white-green.jpg
 
 Style: white-red
 Name: White Red
 Background: White
 Color: Red
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/makai/styles/white-red.jpg
+Preview: https://yootheme.com/api/style/makai/white-red.jpg
 
 Style: dark-turquoise
 Name: Dark Turquoise
 Background: Dark
 Color: Turquoise
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/makai/styles/dark-turquoise.jpg
+Preview: https://yootheme.com/api/style/makai/dark-turquoise.jpg
 
 */
 
@@ -103,6 +103,12 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/makai/styles/
 }
 
 //
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:            12px;
+
+//
 // Toolbar
 //
 
@@ -111,7 +117,6 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/makai/styles/
 
 @theme-toolbar-color-mode:                              dark;
 
-@theme-toolbar-padding-vertical:                        5px;
 @theme-toolbar-background:                              @global-inverse-color;
 @theme-toolbar-font-size:                               @global-font-size;
 
@@ -138,9 +143,35 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/makai/styles/
 @inverse-theme-box-decoration-primary-border:           @global-inverse-color;
 @inverse-theme-box-decoration-secondary-border:         @global-inverse-color;
 
+//
+// WooCommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-price-font-size:                 @global-font-size;
+@woocommerce-shop-page-price-line-height:               @global-line-height;
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                              @global-primary-background;
+@woocommerce-rating-font-size:                          @global-font-size;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-font-size:                          @global-font-size;
+@woocommerce-widget-line-height:                        @global-line-height;
+
+
 // Style
 // ========================================================================
 
 @import (optional) "../vendor/assets/uikit-themes/master-makai/styles/@{internal-style}.less";
 
-@internal-style: ;
+@internal-style: ~'';

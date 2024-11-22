@@ -19,6 +19,12 @@
 @search-navbar-letter-spacing:                  inherit;
 @search-navbar-font-style:                      inherit;
 
+@search-medium-font-family:                     inherit;
+@search-medium-font-weight:                     inherit;
+@search-medium-text-transform:                  inherit;
+@search-medium-letter-spacing:                  inherit;
+@search-medium-font-style:                      inherit;
+
 @search-large-font-family:                      inherit;
 @search-large-font-weight:                      inherit;
 @search-large-text-transform:                   inherit;
@@ -34,6 +40,12 @@
 // ========================================================================
 
 .hook-search-input() {}
+
+
+// Icon
+// ========================================================================
+
+.hook-search-icon() {}
 
 
 // Default modifiers
@@ -60,7 +72,6 @@
 .hook-search-default-input() when not (@search-default-font-style = inherit) {
     font-style: @search-default-font-style;
 }
-
 
 .hook-search-default-input-focus() {}
 
@@ -90,6 +101,36 @@
     font-style: @search-navbar-font-style;
 }
 
+.hook-search-navbar-input-focus() {}
+
+
+// Medium modifiers
+// ========================================================================
+
+.hook-search-medium-input() {}
+
+.hook-search-medium-input() when not (@search-medium-font-family = inherit) {
+    font-family: @search-medium-font-family;
+}
+
+.hook-search-medium-input() when not (@search-medium-font-weight = inherit) {
+    font-weight: @search-medium-font-weight;
+}
+
+.hook-search-medium-input() when not (@search-medium-text-transform = inherit) {
+    text-transform: @search-medium-text-transform;
+}
+
+.hook-search-medium-input() when not (@search-medium-letter-spacing = inherit) {
+    letter-spacing: @search-medium-letter-spacing;
+}
+
+.hook-search-medium-input() when not (@search-medium-font-style = inherit) {
+    font-style: @search-medium-font-style;
+}
+
+.hook-search-medium-input-focus() {}
+
 
 // Large modifiers
 // ========================================================================
@@ -116,6 +157,8 @@
     font-style: @search-large-font-style;
 }
 
+.hook-search-large-input-focus() {}
+
 
 // Toggle
 // ========================================================================
@@ -138,8 +181,13 @@
 .hook-inverse-search-default-input-focus() {}
 
 .hook-inverse-search-navbar-input() {}
+.hook-inverse-search-navbar-input-focus() {}
+
+.hook-inverse-search-medium-input() {}
+.hook-inverse-search-medium-input-focus() {}
 
 .hook-inverse-search-large-input() {}
+.hook-inverse-search-large-input-focus() {}
 
 .hook-inverse-search-toggle() {}
 .hook-inverse-search-toggle-hover() {}

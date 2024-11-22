@@ -19,6 +19,12 @@
 @global-xlarge-box-shadow:                      2px 26px 56px rgba(10,11,18,0.06);
 
 //
+// Badge
+//
+
+@badge-background:                              @global-emphasis-color;
+
+//
 // Button
 //
 
@@ -28,26 +34,27 @@
 @inverse-button-default-border:                 fade(@inverse-global-color, 20%);
 
 @button-primary-hover-background:               spin(darken(@button-primary-background, 8%), -5%);
-@internal-button-primary-gradient:              ;
-@internal-button-primary-hover-gradient:        ;
-@internal-button-primary-active-gradient:       ;
+@internal-button-primary-gradient:              ~'';
+@internal-button-primary-hover-gradient:        ~'';
+@internal-button-primary-active-gradient:       ~'';
 
 @button-secondary-hover-background:             darken(@button-secondary-background, 5%);
-@internal-button-secondary-gradient:            ;
-@internal-button-secondary-hover-gradient:      ;
-@internal-button-secondary-active-gradient:     ;
+@internal-button-secondary-gradient:            ~'';
+@internal-button-secondary-hover-gradient:      ~'';
+@internal-button-secondary-active-gradient:     ~'';
 
 //
 // Card
 //
 
 @card-primary-hover-background:                 spin(darken(@card-primary-background, 3%), -5%);
-@internal-card-primary-gradient:                ;
-@internal-card-primary-hover-gradient:          ;
+@internal-card-primary-gradient:                ~'';
+@internal-card-primary-hover-gradient:          ~'';
 
 @card-secondary-hover-background:               darken(@card-secondary-background, 5%);
-@internal-card-secondary-gradient:              ;
-@internal-card-secondary-hover-gradient:        ;
+@internal-card-secondary-gradient:              ~'';
+@internal-card-secondary-hover-gradient:        ~'';
+@internal-card-badge-gradient:                  ~'';
 
 //
 // Navbar
@@ -59,20 +66,26 @@
 // Section
 //
 
-@internal-section-primary-gradient:             ;
+@internal-section-primary-gradient:             ~'';
 
-@internal-section-secondary-gradient:           ;
+@internal-section-secondary-gradient:           ~'';
 
 //
 // Subnav
 //
 
-@internal-subnav-pill-item-active-gradient:     ;
+@internal-subnav-pill-item-active-gradient:     ~'';
 
 //
 // Tile
 //
 
-@internal-tile-primary-gradient:                ;
+@internal-tile-primary-gradient:                ~'';
 
-@internal-tile-secondary-gradient:              ;
+@internal-tile-secondary-gradient:              ~'';
+
+//
+// Woocommerce
+//
+
+@woocommerce-rating-color:                      @global-emphasis-color;

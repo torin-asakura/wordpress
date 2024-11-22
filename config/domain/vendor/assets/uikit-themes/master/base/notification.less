@@ -14,8 +14,8 @@
 @notification-message-font-size:                      @global-font-size;
 @notification-message-line-height:                    1.5;
 
-@notification-close-top:                              @notification-message-padding / 2;
-@notification-close-right:                            @notification-message-padding / 2;
+@notification-close-top:                              (@notification-message-padding / 2);
+@notification-close-right:                            (@notification-message-padding / 2);
 
 @notification-message-primary-color:                  @global-inverse-color;
 @notification-message-success-color:                  @global-inverse-color;
@@ -26,11 +26,12 @@
 // New
 //
 
+@notification-message-backdrop-filter:              ~'';
+
 @notification-message-primary-background:             @global-primary-background;
 @notification-message-success-background:             @global-success-background;
 @notification-message-warning-background:             @global-warning-background;
 @notification-message-danger-background:              @global-danger-background;
-
 
 @notification-message-primary-color-mode:             light;
 @notification-message-success-color-mode:             light;
@@ -47,7 +48,10 @@
 // Message
 // ========================================================================
 
-.hook-notification-message() {}
+.hook-notification-message() when not (@notification-message-backdrop-filter = ~'') {
+    backdrop-filter: @notification-message-backdrop-filter;
+    -webkit-backdrop-filter: @notification-message-backdrop-filter;
+}
 
 
 // Close

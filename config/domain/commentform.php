@@ -33,13 +33,13 @@ comment_form([
 
     'fields' => [
 
-        'author' => '<p class="comment-form-author"><label class="uk-form-label" for="author">' . __('Name') . ($req ? ' <span class="required">*</span>' : '') . '</label><input class="uk-input" id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $req_attr . ' /></p>',
+        'author' => '<p class="comment-form-author"><label class="uk-form-label" for="author">' . __('Name') . ($req ? ' <span class="required">*</span>' : '') . '</label><input class="uk-input" id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $req_attr . '></p>',
 
-        'email' => '<p class="comment-form-email"><label class="uk-form-label" for="email">' . __('Email') . ($req ? ' <span class="required">*</span>' : '') . '</label><input class="uk-input" id="email" name="email" type="email" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $req_attr . ' /></p>',
+        'email' => '<p class="comment-form-email"><label class="uk-form-label" for="email">' . __('Email') . ($req ? ' <span class="required">*</span>' : '') . '</label><input class="uk-input" id="email" name="email" type="email" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $req_attr . '></p>',
 
-        'url' => '<p class="comment-form-url"><label class="uk-form-label" for="url">' . __('Website') . '</label><input class="uk-input" id="url" name="url" type="url" value="' . esc_attr($commenter['comment_author_url']) . '" size="30" /></p>',
+        'url' => '<p class="comment-form-url"><label class="uk-form-label" for="url">' . __('Website') . '</label><input class="uk-input" id="url" name="url" type="url" value="' . esc_attr($commenter['comment_author_url']) . '" size="30"></p>',
 
-        'cookies' => '<p class="comment-form-cookies-consent"><label class="uk-form-label"><input class="uk-checkbox" id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' /> ' . __('Save my name, email, and website in this browser for the next time I comment.') . '</label></p>',
+        'cookies' => '<p class="comment-form-cookies-consent"><label class="uk-form-label"><input class="uk-checkbox" id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . '> ' . __('Save my name, email, and website in this browser for the next time I comment.') . '</label></p>',
 
     ],
 

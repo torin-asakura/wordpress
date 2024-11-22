@@ -2,16 +2,23 @@
 // Global
 //
 
-@global-color: 									#666;
-@global-emphasis-color: 						#363636;
-@global-link-color: 							#4A91FD;
+@global-color:                                  #666;
+@global-emphasis-color:                         #363636;
+@global-link-color:                             #4A91FD;
 @global-link-hover-color:                       @global-secondary-background;
 
-@global-primary-background: 					#4A91FD;
-@global-secondary-background: 					#4DC36B;
+@global-primary-background:                     #4A91FD;
+@global-secondary-background:                   #4DC36B;
 @global-success-background:                     #1ed482;
 @global-danger-background:                      #F3472A;
 @global-warning-background:                     #FDBE00;
+
+//
+// Theme
+//
+
+@internal-theme-transition-border-border-gradient: linear-gradient(45deg, @global-primary-background, lighten(@global-primary-background, 7%));
+
 
 //
 // Alert
@@ -26,6 +33,12 @@
 @alert-warning-color:                           darken(@global-warning-background, 3%);
 
 //
+// Badge
+//
+
+@internal-badge-gradient:                       linear-gradient(45deg, @global-primary-background, lighten(@global-primary-background, 7%));
+
+//
 // Button
 //
 
@@ -37,7 +50,7 @@
 @button-primary-active-background:              darken(@button-primary-background, 10%);
 
 @internal-button-secondary-gradient:            linear-gradient(45deg, @global-secondary-background 40%, lighten(saturate(spin(@global-secondary-background, -10), 8%), 12%));
-@internal-button-secondary-hover-gradient:   	linear-gradient(45deg, saturate(spin(@global-secondary-background, -10), 8%) 40%, lighten(saturate(spin(@global-secondary-background, -10), 8%), 20%));
+@internal-button-secondary-hover-gradient:      linear-gradient(45deg, saturate(spin(@global-secondary-background, -10), 8%) 40%, lighten(saturate(spin(@global-secondary-background, -10), 8%), 20%));
 
 //
 // Cards
@@ -48,6 +61,8 @@
 
 @internal-card-secondary-gradient:              linear-gradient(45deg, @global-secondary-background, lighten(saturate(spin(@global-secondary-background, -10), 8%), 12%));
 @internal-card-secondary-hover-gradient:        linear-gradient(45deg, saturate(darken(@global-secondary-background, 2%), 3%) 40%, saturate(lighten(@global-secondary-background, 10%), 5%));
+
+@internal-card-badge-gradient:                  linear-gradient(45deg, @global-primary-background, lighten(@global-primary-background, 7%));
 
 //
 // Navbar

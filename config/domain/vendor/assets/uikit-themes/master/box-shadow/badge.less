@@ -33,5 +33,10 @@
 // Inverse
 // ========================================================================
 
-.hook-inverse-badge() {}
+@inverse-badge-box-shadow:                      none;
+
+.hook-inverse-badge() when not (@badge-box-shadow = none) {
+    box-shadow: @inverse-badge-box-shadow;
+}
+
 .hook-inverse-badge-hover() {}

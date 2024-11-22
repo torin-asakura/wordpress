@@ -4,42 +4,42 @@ Name: Joline
 Background: White
 Color: Beige
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/joline/styles/default.jpg
+Preview: https://yootheme.com/api/style/joline/default.jpg
 
 Style: white-salmon
 Name: White Salmon
 Background: White
 Color: Red
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/joline/styles/white-salmon.jpg
+Preview: https://yootheme.com/api/style/joline/white-salmon.jpg
 
 Style: white-green
 Name: White Green
 Background: White
 Color: Green
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/joline/styles/white-green.jpg
+Preview: https://yootheme.com/api/style/joline/white-green.jpg
 
 Style: light-green
 Name: Light Green
 Background: Light
 Color: Green
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/joline/styles/light-green.jpg
+Preview: https://yootheme.com/api/style/joline/light-green.jpg
 
 Style: light-pink
 Name: Light Pink
 Background: Light
 Color: Pink
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/joline/styles/light-pink.jpg
+Preview: https://yootheme.com/api/style/joline/light-pink.jpg
 
-Style: black-pink
-Name: Black Pink
-Background: Black
+Style: dark-pink
+Name: Dark Pink
+Background: Dark
 Color: Pink
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/joline/styles/black-pink.jpg
+Preview: https://yootheme.com/api/style/joline/dark-pink.jpg
 
 */
 
@@ -61,7 +61,13 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/joline/styles
 // ========================================================================
 
 //
-// Headerbar
+// Toolbar
+//
+
+@theme-toolbar-font-size:                       12px;
+
+//
+// Header
 //
 
 @theme-headerbar-top-padding-top:               40px;
@@ -73,6 +79,8 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/joline/styles
 @theme-headerbar-bottom-padding-bottom:         40px;
 
 @theme-headerbar-stacked-margin-top:            40px;
+
+@theme-headerbar-font-size:                     12px;
 
 .tm-headerbar-top + .uk-navbar-container:not(.uk-navbar-sticky) .uk-navbar-nav > li > a::before when (@navbar-nav-item-line-mode) and (@navbar-nav-item-line-position-mode = top) { top: -@theme-headerbar-top-border-width; }
 
@@ -104,9 +112,33 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/joline/styles
 @inverse-theme-box-decoration-primary-border:            @inverse-global-primary-background;
 @inverse-theme-box-decoration-secondary-border:          @inverse-global-primary-background;
 
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             6px;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-background-color:                    darken(@global-muted-background, 5%);
+@woocommerce-rating-color:                               @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
+
 // Style
 // ========================================================================
 
 @import (optional) "../vendor/assets/uikit-themes/master-joline/styles/@{internal-style}.less";
 
-@internal-style: ;
+@internal-style: ~'';

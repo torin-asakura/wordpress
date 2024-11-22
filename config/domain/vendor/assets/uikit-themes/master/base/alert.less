@@ -14,11 +14,16 @@
 @alert-close-opacity:                           0.4;
 @alert-close-hover-opacity:                     0.8;
 
+@alert-backdrop-filter:                         ~'';
+
 
 // Component
 // ========================================================================
 
-.hook-alert() {}
+.hook-alert() when not (@alert-backdrop-filter = ~'') {
+    backdrop-filter: @alert-backdrop-filter;
+    -webkit-backdrop-filter: @alert-backdrop-filter;
+}
 
 
 // Close

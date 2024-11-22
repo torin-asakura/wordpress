@@ -7,6 +7,10 @@
 // Variables
 // ========================================================================
 
+@internal-dotnav-item-hover-mode:               ~''; // glitch
+@internal-dotnav-item-hover-glitch-animation:   uk-glitch-skew, uk-glitch-opacity;
+@internal-dotnav-item-hover-glitch-duration:    0.2s;
+
 
 // Component
 // ========================================================================
@@ -23,6 +27,15 @@
 .hook-dotnav-item-onclick() {}
 
 .hook-dotnav-item-active() {}
+
+//
+// Glitch
+//
+
+.hook-dotnav-item-hover() when (@internal-dotnav-item-hover-mode = glitch) {
+    animation: @internal-dotnav-item-hover-glitch-duration ease both;
+    animation-name: @internal-dotnav-item-hover-glitch-animation;
+}
 
 
 // Miscellaneous

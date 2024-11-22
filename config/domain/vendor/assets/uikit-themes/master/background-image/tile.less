@@ -12,16 +12,16 @@
 //
 
 // Gradient
-@internal-tile-default-gradient:               ;
-@internal-tile-muted-gradient:                 ;
-@internal-tile-primary-gradient:               ;
-@internal-tile-secondary-gradient:             ;
+@internal-tile-default-gradient:               ~'';
+@internal-tile-muted-gradient:                 ~'';
+@internal-tile-primary-gradient:               ~'';
+@internal-tile-secondary-gradient:             ~'';
 
 // Image
-@internal-tile-default-image:                  ;
-@internal-tile-muted-image:                    ;
-@internal-tile-primary-image:                  ;
-@internal-tile-secondary-image:                ;
+@internal-tile-default-image:                  ~'';
+@internal-tile-muted-image:                    ~'';
+@internal-tile-primary-image:                  ~'';
+@internal-tile-secondary-image:                ~'';
 
 
 // Component
@@ -52,6 +52,8 @@
     background-image: url("@{internal-tile-default-image}"), @internal-tile-default-gradient;
 }
 
+.hook-tile-default-hover() {}
+
 //
 // Muted
 //
@@ -70,6 +72,8 @@
 .hook-tile-muted() when not (@internal-tile-muted-gradient = ~'') and not (@internal-tile-muted-image = ~'') {
     background-image: url("@{internal-tile-muted-image}"), @internal-tile-muted-gradient;
 }
+
+.hook-tile-muted-hover() {}
 
 //
 // Primary
@@ -90,6 +94,8 @@
     background-image: url("@{internal-tile-primary-image}"), @internal-tile-primary-gradient;
 }
 
+.hook-tile-primary-hover() {}
+
 //
 // Secondary
 //
@@ -108,6 +114,8 @@
 .hook-tile-secondary() when not (@internal-tile-secondary-gradient = ~'') and not (@internal-tile-secondary-image = ~'') {
     background-image: url("@{internal-tile-secondary-image}"), @internal-tile-secondary-gradient;
 }
+
+.hook-tile-secondary-hover() {}
 
 
 // Miscellaneous

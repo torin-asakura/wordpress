@@ -11,14 +11,16 @@
 // New
 //
 
-@internal-card-default-gradient:               ;
-@internal-card-default-hover-gradient:         ;
+@internal-card-badge-gradient:                 ~'';
 
-@internal-card-primary-gradient:               ;
-@internal-card-primary-hover-gradient:         ;
+@internal-card-default-gradient:               ~'';
+@internal-card-default-hover-gradient:         ~'';
 
-@internal-card-secondary-gradient:             ;
-@internal-card-secondary-hover-gradient:       ;
+@internal-card-primary-gradient:               ~'';
+@internal-card-primary-hover-gradient:         ~'';
+
+@internal-card-secondary-gradient:             ~'';
+@internal-card-secondary-hover-gradient:       ~'';
 
 
 // Component
@@ -60,7 +62,9 @@
 // Badge
 // ========================================================================
 
-.hook-card-badge() {}
+.hook-card-badge() when not (@internal-card-badge-gradient = ~'') {
+    background-image: @internal-card-badge-gradient;
+}
 
 
 // Hover modifier
@@ -119,3 +123,11 @@
 // ========================================================================
 
 .hook-card-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-card-badge() when not (@internal-card-badge-gradient = ~'') {
+    background-image: none;
+}

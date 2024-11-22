@@ -20,64 +20,64 @@ if (!empty($gallery_attr['ids'])) {
 }
 
 $atts = shortcode_atts(
-    array(
+    [
         'order' => 'ASC',
         'orderby' => 'menu_order ID',
-        'id'         => $post ? $post->ID : 0,
-        'itemtag'    => 'figure',
-        'icontag'    => 'div',
+        'id' => $post ? $post->ID : 0,
+        'itemtag' => 'figure',
+        'icontag' => 'div',
         'captiontag' => 'figcaption',
         'columns' => 3,
         'size' => 'thumbnail',
         'include' => '',
         'exclude' => '',
         'link' => '',
-    ),
+    ],
     $gallery_attr,
     'gallery'
 );
 
-$atts['columns'] = $atts['columns'] > 6 ? 6 : $atts['columns'];
-$id = intval( $atts['id'] );
+$atts['columns'] = min($atts['columns'], 6);
+$id = intval($atts['id']);
 
 if (!empty($atts['include'])) {
     $_attachments = get_posts(
-        array(
-            'include'        => $atts['include'],
-            'post_status'    => 'inherit',
-            'post_type'      => 'attachment',
+        [
+            'include' => $atts['include'],
+            'post_status' => 'inherit',
+            'post_type' => 'attachment',
             'post_mime_type' => 'image',
-            'order'          => $atts['order'],
-            'orderby'        => $atts['orderby'],
-        )
+            'order' => $atts['order'],
+            'orderby' => $atts['orderby'],
+        ]
     );
 
-    $attachments = array();
-    foreach ($_attachments as $key => $val) {
-        $attachments[$val->ID] = $_attachments[$key];
+    $attachments = [];
+    foreach ($_attachments as $val) {
+        $attachments[$val->ID] = $val;
     }
 } elseif (!empty($atts['exclude'])) {
     $attachments = get_children(
-        array(
-            'post_parent'    => $id,
-            'exclude'        => $atts['exclude'],
-            'post_status'    => 'inherit',
-            'post_type'      => 'attachment',
+        [
+            'post_parent' => $id,
+            'exclude' => $atts['exclude'],
+            'post_status' => 'inherit',
+            'post_type' => 'attachment',
             'post_mime_type' => 'image',
-            'order'          => $atts['order'],
-            'orderby'        => $atts['orderby'],
-        )
+            'order' => $atts['order'],
+            'orderby' => $atts['orderby'],
+        ]
     );
 } else {
     $attachments = get_children(
-        array(
-            'post_parent'    => $id,
-            'post_status'    => 'inherit',
-            'post_type'      => 'attachment',
+        [
+            'post_parent' => $id,
+            'post_status' => 'inherit',
+            'post_type' => 'attachment',
             'post_mime_type' => 'image',
-            'order'          => $atts['order'],
-            'orderby'        => $atts['orderby'],
-        )
+            'order' => $atts['order'],
+            'orderby' => $atts['orderby'],
+        ]
     );
 }
 
@@ -98,7 +98,7 @@ if (!empty($atts['include'])) {
             }
             ?>
 
-            <?= $img; ?>
+            <?= $img ?>
 
             <?php if ($caption = wptexturize($image->post_excerpt)) : ?>
                 <div class='uk-panel uk-padding-small'><?= $caption ?></div>

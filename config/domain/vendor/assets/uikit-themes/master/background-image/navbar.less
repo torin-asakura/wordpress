@@ -11,14 +11,16 @@
 // New
 //
 
-@internal-navbar-gradient:                     ;
+@internal-navbar-gradient:                     ~'';
 
-@internal-navbar-nav-item-line-gradient:       ;
+@internal-navbar-nav-item-gradient:            ~'';
+@internal-navbar-nav-item-hover-gradient:      ~'';
+@internal-navbar-nav-item-active-gradient:     ~'';
 
-@internal-navbar-nav-item-background-image:    ;
+@internal-navbar-nav-item-line-gradient:       ~'';
+
+@internal-navbar-nav-item-background-image:    ~'';
 @internal-navbar-nav-item-background-size:     cover;
-
-@internal-navbar-dropbar-gradient:             ;
 
 
 // Component
@@ -38,13 +40,28 @@
 // Nav
 // ========================================================================
 
-.hook-navbar-nav-item() {}
+.hook-navbar-nav-item() when not (@internal-navbar-nav-item-gradient = ~'') {
+    background-image: @internal-navbar-nav-item-gradient;
+}
 
-.hook-navbar-nav-item-hover() {}
+.hook-navbar-nav-item-hover() when not (@internal-navbar-nav-item-hover-gradient = ~'') {
+    background-image: @internal-navbar-nav-item-hover-gradient;
+}
+
+.hook-navbar-nav-item-hover() when (@internal-navbar-nav-item-hover-gradient = ~'') and not (@internal-navbar-nav-item-gradient = ~'') {
+    background-image: none;
+}
 
 .hook-navbar-nav-item-onclick() {}
 
-.hook-navbar-nav-item-active() {}
+.hook-navbar-nav-item-active() when not (@internal-navbar-nav-item-active-gradient = ~'') {
+    background-image: @internal-navbar-nav-item-active-gradient;
+}
+
+.hook-navbar-nav-item-active() when (@internal-navbar-nav-item-active-gradient = ~'') and not (@internal-navbar-nav-item-gradient = ~''),
+                                    (@internal-navbar-nav-item-active-gradient = ~'') and not (@internal-navbar-nav-item-hover-gradient = ~'') {
+    background-image: none;
+}
 
 // Gradient
 .hook-navbar-nav-item-line() when not (@internal-navbar-nav-item-line-gradient = ~'') and (@internal-navbar-nav-item-background-image = ~'') {
@@ -116,7 +133,11 @@
 
 .hook-navbar-dropdown() {}
 
+.hook-navbar-dropdown-large() {}
+
 .hook-navbar-dropdown-dropbar() {}
+
+.hook-navbar-dropdown-dropbar-large() {}
 
 
 // Dropdown nav
@@ -128,6 +149,8 @@
 
 .hook-navbar-dropdown-nav-item-hover() {}
 
+.hook-navbar-dropdown-nav-subtitle() {}
+
 .hook-navbar-dropdown-nav-header() {}
 
 .hook-navbar-dropdown-nav-divider() {}
@@ -136,9 +159,7 @@
 // Dropbar
 // ========================================================================
 
-.hook-navbar-dropbar() when not (@internal-navbar-dropbar-gradient = ~'') {
-    background-image: @internal-navbar-dropbar-gradient;
-}
+.hook-navbar-dropbar() {}
 
 
 // Miscellaneous

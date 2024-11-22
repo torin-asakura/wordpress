@@ -13,6 +13,10 @@
 
 @marker-hover-background:                       @marker-background;
 
+@internal-marker-hover-mode:                    ~''; // glitch
+@internal-marker-hover-glitch-animation:        uk-glitch-opacity;
+@internal-marker-hover-glitch-duration:         0.2s;
+
 
 // Component
 // ========================================================================
@@ -24,6 +28,15 @@
 
 .hook-marker-hover() when not (@marker-hover-background = @marker-background) {
     background: @marker-hover-background;
+}
+
+//
+// Glitch
+//
+
+.hook-marker-hover() when (@internal-marker-hover-mode = glitch) {
+    animation: @internal-marker-hover-glitch-duration ease both;
+    animation-name: @internal-marker-hover-glitch-animation;
 }
 
 

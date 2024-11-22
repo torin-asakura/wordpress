@@ -4,42 +4,42 @@ Name: Copper Hill
 Background: White
 Color: Orange
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/styles/default.jpg
+Preview: https://yootheme.com/api/style/copper-hill/default.jpg
 
 Style: white-red
 Name: White Red
 Background: White
 Color: Red
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/styles/white-red.jpg
+Preview: https://yootheme.com/api/style/copper-hill/white-red.jpg
 
-Style: white-turquoise
-Name: White Turquoise
+Style: light-turquoise
+Name: Light Turquoise
 Background: Light
 Color: Turquoise
-Type: Skeuomorph
-Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/styles/white-turquoise.jpg
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/copper-hill/light-turquoise.jpg
 
 Style: light-black
 Name: Light Black
 Background: Light
 Color: Black
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/styles/light-black.jpg
+Preview: https://yootheme.com/api/style/copper-hill/light-black.jpg
 
 Style: light-beige
 Name: Light Beige
 Background: Light
 Color: Beige
-Type: Skeuomorph
-Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/styles/light-beige.jpg
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/copper-hill/light-beige.jpg
 
 Style: black-beige
 Name: Black Beige
 Background: Black
 Color: Beige
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/styles/black-beige.jpg
+Preview: https://yootheme.com/api/style/copper-hill/black-beige.jpg
 
 */
 
@@ -59,6 +59,10 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/s
 
 // Variables
 // ========================================================================
+
+//
+// Box Decoration
+//
 
 @theme-box-decoration-top:                               10px;
 @theme-box-decoration-bottom:                            10px;
@@ -106,6 +110,7 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/s
         right: 10px;
         border: @theme-box-decoration-primary-border-width solid @theme-box-decoration-primary-border;
         z-index: @theme-box-decoration-z-index;
+        pointer-events: none;
     }
 
 }
@@ -132,6 +137,7 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/s
         right: -16px;
         border: @theme-box-decoration-secondary-border-width solid @theme-box-decoration-secondary-border;
         z-index: @theme-box-decoration-z-index;
+        pointer-events: none;
     }
 
 }
@@ -148,10 +154,34 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/copper-hill/s
     &::after { border-color: @inverse-theme-box-decoration-secondary-border; }
 }
 
+//
+// Transition Border
+//
+
+@theme-transition-border-border:                        @global-background;
+@theme-transition-border-hover-border-width:            14px;
+@theme-transition-border-hover-border:                  @theme-transition-border-border;
+
+//
+// WooCommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                               @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
 
 // Style
 // ========================================================================
 
 @import (optional) "../vendor/assets/uikit-themes/master-copper-hill/styles/@{internal-style}.less";
 
-@internal-style: ;
+@internal-style: ~'';

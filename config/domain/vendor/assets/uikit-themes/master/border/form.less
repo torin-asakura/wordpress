@@ -15,7 +15,7 @@
 // New
 //
 
-@form-border-mode:                              ;
+@form-border-mode:                              ~'';
 
 @form-border-width:                             0;
 @form-border:                                   transparent;
@@ -28,7 +28,7 @@
 @form-success-border:                           transparent;
 
 @form-blank-focus-border:                       transparent;
-@form-blank-focus-border-style:                 none;
+@form-blank-focus-border-style:                 solid;
 
 @form-radio-border-width:                       0;
 @form-radio-border:                             transparent;
@@ -50,7 +50,7 @@
 }
 
 .hook-form-multi-line() when not (@form-border-width = 0) {
-    border: @form-border-width solid @form-border;
+    border@{form-border-mode}: @form-border-width solid @form-border;
 }
 
 // `!important` needed to override single line selector for `uk-select`
@@ -81,6 +81,9 @@
 
 .hook-form-blank-focus() when not (@form-border-width = 0) {
     border-color: @form-blank-focus-border !important;
+}
+
+.hook-form-blank-focus() when not (@form-blank-focus-border-style = solid) {
     border-style: @form-blank-focus-border-style;
 }
 
@@ -128,6 +131,12 @@
 .hook-form-horizontal-label() {}
 
 
+// Icon
+// ========================================================================
+
+.hook-form-icon() {}
+
+
 // Miscellaneous
 // ========================================================================
 
@@ -163,3 +172,5 @@
 .hook-inverse-form-radio-checked-focus() {}
 
 .hook-inverse-form-label() {}
+
+.hook-inverse-form-icon() {}

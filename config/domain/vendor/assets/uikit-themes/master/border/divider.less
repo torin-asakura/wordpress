@@ -11,9 +11,14 @@
 // New
 //
 
-@internal-divider-small-border-gradient:       ;
+@internal-divider-icon-line-left-border-gradient:   ~'';
 
-@internal-divider-small-image:                 ;
+@internal-divider-icon-line-right-border-gradient:  ~'';
+
+@internal-divider-small-border-gradient:            ~'';
+@internal-divider-small-image:                      ~'';
+
+@internal-divider-vertical-border-gradient:         ~'';
 
 
 // Icon
@@ -21,11 +26,20 @@
 
 .hook-divider-icon() {}
 
-.hook-divider-icon-line() {}
+.hook-divider-icon-line() {
+    // Fix Safari setting 3px `border-width` if `border-image` is used.
+    border-width: 0 0 @divider-icon-line-border-width 0;
+}
 
-.hook-divider-icon-line-left() {}
+.hook-divider-icon-line-left() when not (@internal-divider-icon-line-left-border-gradient = ~'') {
+    border-image: @internal-divider-icon-line-left-border-gradient;
+    border-image-slice: 1;
+}
 
-.hook-divider-icon-line-right() {}
+.hook-divider-icon-line-right() when not (@internal-divider-icon-line-right-border-gradient = ~'') {
+    border-image: @internal-divider-icon-line-right-border-gradient;
+    border-image-slice: 1;
+}
 
 
 // Small
@@ -36,6 +50,8 @@
 .hook-divider-small() when not (@internal-divider-small-border-gradient = ~'') and (@internal-divider-small-image = ~'') {
     border-image: @internal-divider-small-border-gradient;
     border-image-slice: 1;
+    // Fix Safari setting 3px `border-width` if `border-image` is used.
+    border-width: @divider-small-border-width 0 0 0;
 }
 
 .hook-divider-small() when not (@internal-divider-small-image = ~'') and (@internal-divider-small-border-gradient = ~'') {
@@ -47,7 +63,12 @@
 // Vertical
 // ========================================================================
 
-.hook-divider-vertical() {}
+.hook-divider-vertical() when not (@internal-divider-vertical-border-gradient = ~'') {
+    border-image: @internal-divider-vertical-border-gradient;
+    border-image-slice: 1;
+    // Fix Safari setting 3px `border-width` if `border-image` is used.
+    border-width: 0 0 0 @divider-vertical-border-width;
+}
 
 
 // Miscellaneous
@@ -60,7 +81,10 @@
 // ========================================================================
 
 .hook-inverse-divider-icon() {}
-.hook-inverse-divider-icon-line() {}
+.hook-inverse-divider-icon-line() when not (@internal-divider-icon-line-left-border-gradient = ~''),
+                                       not (@internal-divider-icon-line-right-border-gradient = ~'') {
+    border-image: none;
+}
 
 .hook-inverse-divider-small() when not (@internal-divider-small-border-gradient = ~'') and (@internal-divider-small-image = ~'') {
     border-image: none;
@@ -71,4 +95,6 @@
     border-color: transparent;
 }
 
-.hook-inverse-divider-vertical() {}
+.hook-inverse-divider-vertical() when not (@internal-divider-vertical-border-gradient = ~'') {
+    border-image: none;
+}

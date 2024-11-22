@@ -11,10 +11,11 @@ if (!is_dir($cache)) {
 }
 
 Path::setAlias('~theme', $root);
-Path::setAlias('~yootheme', "{$root}/vendor/yootheme");
+Path::setAlias('~yootheme', "{$root}/packages");
+Path::setAlias('~assets/leaflet', "{$root}/vendor/assets/leaflet");
 Path::setAlias('~assets/uikit', "{$root}/vendor/assets/uikit");
 
 $app = Application::getInstance($cache);
-$app->load('~theme/vendor/yootheme/{application,encryption,image,translation,http{-message,-server},view{,-metadata}}/bootstrap.php');
+$app->load('~theme/packages/{application,encryption,image,translation,http{-message,-server},view{,-metadata}}/bootstrap.php');
 
 return $app;

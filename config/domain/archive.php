@@ -73,7 +73,7 @@ $config = app(Config::class);
 
     <?php if (!is_category() || $config('~theme.blog.category_title')) : ?>
 
-        <h3<?= get_attrs($attrs_title) ?>><?= $title ?></h3>
+        <h1<?= get_attrs($attrs_title, ['class' => 'uk-h3']) ?>><?= $title ?></h1>
 
         <?php if ($description) : ?>
         <div<?= get_attrs($attrs_description) ?>><?= $description ?></div>
@@ -82,8 +82,8 @@ $config = app(Config::class);
     <?php endif ?>
 
     <div<?= get_attrs($attrs) ?>>
-        <?php while(have_posts()) : the_post(); ?>
-        <div><?php get_template_part('templates/post/content', get_post_format()); ?></div>
+        <?php while(have_posts()) : the_post() ?>
+        <div><?php get_template_part('templates/post/content', get_post_format()) ?></div>
         <?php endwhile ?>
     </div>
 

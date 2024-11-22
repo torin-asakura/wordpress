@@ -18,7 +18,7 @@
    Component: Height
  ========================================================================== */
 
-[class*='uk-height'] { box-sizing: border-box; }
+[class*="uk-height"] { box-sizing: border-box; }
 
 /*
  * Only works if parent element has a height set
@@ -31,6 +31,9 @@
  */
 
 .uk-height-viewport { min-height: 100vh; }
+.uk-height-viewport-2 { min-height: 200vh; }
+.uk-height-viewport-3 { min-height: 300vh; }
+.uk-height-viewport-4 { min-height: 400vh; }
 
 /*
  * Pixel
@@ -49,6 +52,6 @@
 // Hooks
 // ========================================================================
 
-.hook-height-misc;
+.hook-height-misc();
 
 .hook-height-misc() {}

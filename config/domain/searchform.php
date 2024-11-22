@@ -5,13 +5,15 @@
 
 namespace YOOtheme;
 
+$view = app(View::class);
+
 $result = get_view('~theme/templates/search', [
 
-    'position' => get_current_sidebar(),
+    'position' => get_current_sidebar() ?? '',
     'attrs' => [
 
-        'id' => 'search-'.rand(100, 999),
-        'action' => esc_url(home_url('/')),
+        'id' => 'search-' . $view->uid(),
+        'action' => home_url('/'),
         'method' => 'get',
         'role' => 'search',
         'class' => '',
@@ -19,9 +21,16 @@ $result = get_view('~theme/templates/search', [
     ],
     'fields' => [
 
-        ['tag' => 'input', 'name' => 's', 'placeholder' => esc_attr_x('Search &hellip;', 'placeholder'), 'value' => get_search_query()],
+        [
+            'tag' => 'input',
+            'name' => 's',
+            'placeholder' => __('Search', 'yootheme'),
+            'value' => get_search_query(),
+            'required' => true,
+            'aria-label' => __('Search', 'yootheme'),
+        ],
 
-    ]
+    ],
 
 ]);
 

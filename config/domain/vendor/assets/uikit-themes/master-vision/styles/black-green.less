@@ -25,6 +25,7 @@
 // Theme
 //
 
+@theme-page-container-color-mode:               light;
 @theme-box-decoration-default-background:       lighten(@global-muted-background, 10%);
 @theme-box-decoration-primary-background:       lighten(@global-muted-background, 10%);
 @theme-box-decoration-secondary-background:     lighten(@global-muted-background, 10%);
@@ -40,8 +41,8 @@
 // Badge
 //
 
-@badge-color:                                   @global-emphasis-color;
-@badge-hover-color:                             @global-emphasis-color;
+@badge-background:                              @global-emphasis-color;
+@badge-color:                                   @global-inverse-color;
 @badge-box-shadow:                              none;
 
 //
@@ -72,9 +73,9 @@
 
 @button-primary-hover-background:               lighten(@button-primary-background, 10%);
 @button-primary-active-background:              fade(@button-primary-background, 90%);
-@internal-button-primary-gradient:              ;
-@internal-button-primary-hover-gradient:        ;
-@internal-button-primary-active-gradient:       ;
+@internal-button-primary-gradient:              ~'';
+@internal-button-primary-hover-gradient:        ~'';
+@internal-button-primary-active-gradient:       ~'';
 @button-primary-box-shadow:                     none;
 @button-primary-hover-box-shadow:               none;
 @inverse-button-primary-background:             fade(@global-inverse-color, 90%);
@@ -90,9 +91,9 @@
 @button-secondary-hover-color:                  @global-inverse-color;
 @button-secondary-active-background:            lighten(@button-secondary-hover-background, 10%);
 @button-secondary-active-color:                 fade(@button-secondary-hover-color, 80%);
-@internal-button-secondary-gradient:            ;
-@internal-button-secondary-hover-gradient:      ;
-@internal-button-secondary-active-gradient:     ;
+@internal-button-secondary-gradient:            ~'';
+@internal-button-secondary-hover-gradient:      ~'';
+@internal-button-secondary-active-gradient:     ~'';
 @button-secondary-box-shadow:                   none;
 @button-secondary-hover-box-shadow:             none;
 @inverse-button-secondary-background:           @global-secondary-background;
@@ -107,12 +108,13 @@
 //
 
 @card-default-background:                       @global-muted-background;
+@card-default-color-mode:                       light;
 @card-default-hover-background:                 lighten(@card-default-background, 1%);
 
 @card-primary-hover-background:                 lighten(@card-primary-background, 10%);
 @card-primary-color-mode:                       dark;
-@internal-card-primary-gradient:                ;
-@internal-card-primary-hover-gradient:          ;
+@internal-card-primary-gradient:                ~'';
+@internal-card-primary-hover-gradient:          ~'';
 @card-primary-box-shadow:                       @global-xlarge-box-shadow;
 @card-primary-hover-box-shadow:                 @global-medium-box-shadow;
 
@@ -120,8 +122,9 @@
 @card-secondary-hover-background:               lighten(@global-secondary-background, 7%);
 @card-secondary-color:                          @global-color;
 @card-secondary-title-color:                    @global-emphasis-color;
-@internal-card-secondary-gradient:              ;
-@internal-card-secondary-hover-gradient:        ;
+@internal-card-secondary-gradient:              ~'';
+@internal-card-secondary-hover-gradient:        ~'';
+@internal-card-badge-gradient:                  ~'';
 
 //
 // Dotnav
@@ -131,9 +134,16 @@
 @dotnav-item-hover-border:                      @global-emphasis-color;
 
 //
+// Dropbar
+//
+
+@dropbar-color-mode:                            light;
+
+//
 // Dropdown
 //
 
+@dropdown-color-mode:                           light;
 @dropdown-background:                           @global-muted-background;
 @dropdown-box-shadow:                           none;
 
@@ -142,13 +152,17 @@
 //
 
 @form-focus-border:                             @global-primary-background;
+@form-radio-checked-background:                 @global-primary-background;
+@form-radio-checked-focus-background:           darken(@global-primary-background, 6%);
+@form-radio-border:                             lighten(@global-border, 15%);
+@form-radio-focus-border:                       @global-primary-background;
 
 //
 // Form-Range
 //
 
-@form-range-track-background:                   @global-muted-background;
-@form-range-track-focus-background:             lighten(@form-range-track-background, 5%);
+@form-range-track-background:                   @global-border;
+@form-range-track-focus-background:             @global-emphasis-color;
 
 //
 // Icon
@@ -166,7 +180,8 @@
 // Label
 //
 
-@label-color:                                   @global-emphasis-color;
+@label-background:                              @global-emphasis-color;
+@label-color:                                   @global-inverse-color;
 @label-box-shadow:                              none;
 @label-success-box-shadow:                      none;
 @label-warning-box-shadow:                      none;
@@ -178,17 +193,26 @@
 
 @list-bullet-icon-color:                        @global-primary-background;
 
-
 //
 // Marker
 //
 
-@marker-color:                                   @global-emphasis-color;
+@marker-background:  @global-emphasis-color;
+@marker-color:       @global-inverse-color;
+@marker-hover-color: @global-inverse-color;
+
+//
+// Nav
+//
+
+@nav-secondary-subtitle-color:                  @global-color;
 
 //
 // Navbar
 //
 
+@navbar-color-mode:                             light;
+@navbar-dropdown-color-mode:                    light;
 @navbar-dropdown-color:                         fade(@global-emphasis-color, 70%);
 @navbar-dropdown-nav-item-color:                fade(@global-emphasis-color, 70%);
 @navbar-dropdown-nav-item-active-color:         @global-emphasis-color;
@@ -196,6 +220,7 @@
 @navbar-dropdown-nav-divider-border:            fade(@global-emphasis-color, 10%);
 @navbar-dropdown-nav-sublist-item-color:        fade(@global-emphasis-color, 50%);
 @navbar-dropdown-nav-sublist-item-hover-color:  fade(@global-emphasis-color, 70%);
+@navbar-dropdown-nav-sublist-item-active-color: @global-emphasis-color;
 
 @navbar-dropdown-box-shadow:                    none;
 
@@ -204,6 +229,12 @@
 //
 
 @offcanvas-bar-color-mode:                      light;
+
+//
+// Overlay
+//
+
+@overlay-default-color-mode:                    light;
 
 //
 // Search
@@ -215,10 +246,13 @@
 // Section
 //
 
+@section-default-color-mode:                    light;
+@section-muted-color-mode:                      light;
 @section-primary-color-mode:                    dark;
-@internal-section-primary-gradient:             ;
+@section-secondary-color-mode:                  light;
+@internal-section-primary-gradient:             ~'';
 
-@internal-section-secondary-gradient:           ;
+@internal-section-secondary-gradient:           ~'';
 
 //
 // Subnav
@@ -226,20 +260,42 @@
 
 @subnav-divider-border:                         fade(@global-muted-color, 20%);
 
-@internal-subnav-pill-item-active-gradient:     ;
+@internal-subnav-pill-item-active-gradient:     ~'';
 @subnav-pill-item-active-box-shadow:            none;
+
+//
+// Text
+//
+
+@text-secondary-color:                          lighten(@global-primary-background, 15%);
+
+//
+// Thumbnav
+//
+
+@thumbnav-item-gradient:         linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.4));
+@inverse-thumbnav-item-gradient: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.4));
 
 //
 // Tile
 //
 
+@tile-default-color-mode:                       light;
+@tile-muted-color-mode:                         light;
 @tile-primary-color-mode:                       dark;
-@internal-tile-primary-gradient:                ;
+@internal-tile-primary-gradient:                ~'';
 
-@internal-tile-secondary-gradient:              ;
+@internal-tile-secondary-gradient:              ~'';
 
 //
-// Tolltip
+// Tooltip
 //
 
 @tooltip-background:                            @global-primary-background;
+
+//
+// WooCommerce
+//
+
+@woocommerce-rating-background-color:           lighten(@global-muted-background, 10%);
+@woocommerce-rating-color:                      @global-emphasis-color;

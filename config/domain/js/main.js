@@ -1,33 +1,33 @@
 import UIkit from 'uikit';
-import {Header, Navbar, Sticky} from './header';
-import {isRtl, swap, ready} from 'uikit-util';
+import { isRtl, once, ready, swap } from 'uikit-util';
+import { Header, Sticky } from './header';
 
-UIkit.component('header', Header);
+UIkit.component('Header', Header);
 UIkit.mixin(Sticky, 'sticky');
-UIkit.mixin(Navbar, 'navbar');
 
 if (isRtl) {
-
     const mixin = {
-
-        init() {
+        created() {
             this.$props.pos = swap(this.$props.pos, 'left', 'right');
-        }
-
+        },
     };
 
     UIkit.mixin(mixin, 'drop');
     UIkit.mixin(mixin, 'tooltip');
 }
 
-ready(() => {
+once(document, 'uikit:init', () => {
+    const { $theme: { i18n = {} } = {} } = window;
+    for (const component in i18n) {
+        UIkit.mixin({ i18n: i18n[component] }, component);
+    }
+});
 
-    const {$load = [], $theme = {}} = window;
+ready(() => {
+    const { $load = [], $theme = {} } = window;
 
     function load(stack, config) {
-        stack.length && stack.shift()(
-            config, () => load(stack, config)
-        );
+        stack.length && stack.shift()(config, () => load(stack, config));
     }
 
     load($load, $theme);

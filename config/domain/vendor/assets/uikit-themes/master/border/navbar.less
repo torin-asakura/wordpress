@@ -11,12 +11,12 @@
 // New
 //
 
-@navbar-mode:                                            ; // none, border, frame
-@navbar-mode-border-vertical:                            ;
+@navbar-mode:                                            ~''; // border, border-always, rail, frame
+@navbar-mode-border-vertical:                            ~''; // partial, all
 
 @navbar-border-width:                                    0;
 @navbar-border:                                          transparent;
-@internal-navbar-border-mode:                            ; // overlay
+@internal-navbar-border-mode:                            ~''; // overlay
 
 @navbar-dropdown-border-width:                           0;
 @navbar-dropdown-border:                                 transparent;
@@ -87,9 +87,13 @@
     border: @navbar-dropdown-border-width solid @navbar-dropdown-border;
 }
 
+.hook-navbar-dropdown-large() {}
+
 .hook-navbar-dropdown-dropbar() when not (@navbar-dropdown-border-width = 0) {
-    border-color: transparent;
+    border: none;
 }
+
+.hook-navbar-dropdown-dropbar-large() {}
 
 
 // Dropdown nav
@@ -101,6 +105,8 @@
 
 .hook-navbar-dropdown-nav-item-hover() {}
 
+.hook-navbar-dropdown-nav-subtitle() {}
+
 .hook-navbar-dropdown-nav-header() {}
 
 .hook-navbar-dropdown-nav-divider() {}
@@ -111,23 +117,110 @@
 
 .hook-navbar-dropbar() {}
 
-.hook-navbar-dropbar-slide() {}
-
 
 // Miscellaneous
 // ========================================================================
 
 //
-// Border mode
+// Mode Border Vertical
 //
 
+.hook-navbar-misc() when (@navbar-mode-border-vertical = partial) and not (@navbar-border-width = 0),
+                         (@navbar-mode-border-vertical = partial) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-left {
+        padding-right: @container-padding-horizontal;
+        border-right: @navbar-border-width solid @navbar-border;
+    }
+
+    .uk-navbar-right {
+        padding-left: @container-padding-horizontal;
+        border-left: @navbar-border-width solid @navbar-border;
+    }
+
+    /* Phone landscape and bigger */
+    @media (min-width: @breakpoint-small) {
+
+        .uk-navbar-left { padding-right: @container-padding-horizontal-s; }
+        .uk-navbar-right { padding-left: @container-padding-horizontal-s; }
+
+    }
+
+    /* Tablet landscape and bigger */
+    @media (min-width: @breakpoint-medium) {
+
+        .uk-navbar-left { padding-right: @container-padding-horizontal-m; }
+        .uk-navbar-right { padding-left: @container-padding-horizontal-m; }
+
+    }
+
+}
+
+.hook-navbar-misc() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-left .uk-navbar-nav,
+    .uk-navbar-left .uk-navbar-item,
+    .uk-navbar-left .uk-navbar-toggle,
+    .uk-navbar-center > :last-child,
+    .uk-navbar-right .uk-navbar-nav > li:nth-last-child(n+2) > a { border-right: @navbar-border-width solid @navbar-border; }
+
+    .uk-navbar-right .uk-navbar-nav,
+    .uk-navbar-right .uk-navbar-item,
+    .uk-navbar-right .uk-navbar-toggle,
+    .uk-navbar-center .uk-navbar-nav,
+    .uk-navbar-center .uk-navbar-item,
+    .uk-navbar-center .uk-navbar-toggle,
+    .uk-navbar-left .uk-navbar-nav > li:nth-child(n+2) > a,
+    .uk-navbar-center .uk-navbar-nav > li:nth-child(n+2) > a { border-left: @navbar-border-width solid @navbar-border; }
+
+}
+
+.hook-navbar-misc() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) and not (@navbar-mode = frame) {
+
+    .uk-navbar-right { border-right: @navbar-border-width solid @navbar-border; }
+    .uk-navbar-left { border-left: @navbar-border-width solid @navbar-border; }
+
+}
+
+.hook-navbar-misc() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) and (@navbar-mode = frame) {
+
+    .uk-navbar-justify > :last-child > :not(.uk-navbar-nav):last-child,
+    .uk-navbar-justify > :last-child > .uk-navbar-nav > :last-child > a { border-right: none; }
+
+}
+
+//
+// Mode Border + Border Always
+//
+
+.hook-navbar-container() when (@navbar-mode = border) and not (@navbar-border-width = 0) {
+    border-bottom-color: @navbar-border;
+}
+
 .hook-navbar-misc() when (@navbar-mode = border) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-container { border-bottom: @navbar-border-width solid transparent; }
+
+}
+
+.hook-navbar-misc() when (@navbar-mode = border-always) and not (@navbar-border-width = 0) {
 
     .uk-navbar-container { border-bottom: @navbar-border-width solid @navbar-border; }
 
 }
 
-.hook-navbar-misc() when (@navbar-mode = border) and not (@navbar-border-width = 0) and (@internal-navbar-border-mode = overlay) {
+.hook-navbar-container() when (@navbar-mode = border) and not (@navbar-border-width = 0) and not (@navbar-mode-border-vertical = ~'') {
+
+    .tm-header .tm-headerbar-top + * &:not(.uk-navbar-sticky) { border-top: @navbar-border-width solid @navbar-border; }
+}
+
+.hook-navbar-misc() when (@navbar-mode = border-always) and not (@navbar-border-width = 0) and not (@navbar-mode-border-vertical = ~'') {
+
+    .tm-header .tm-headerbar-top + * .uk-navbar-container:not(.uk-navbar-sticky) { border-top: @navbar-border-width solid @navbar-border; }
+}
+
+.hook-navbar-misc() when ((@navbar-mode = border) and not (@navbar-border-width = 0) and (@internal-navbar-border-mode = overlay)),
+                         ((@navbar-mode = border-always) and not (@navbar-border-width = 0) and (@internal-navbar-border-mode = overlay)) {
 
     .uk-navbar-left,
     .uk-navbar-right,
@@ -135,57 +228,26 @@
 
 }
 
-.hook-navbar-misc() when (@navbar-mode = border) and (@navbar-mode-border-vertical = true) {
+//
+// Mode Rail
+//
 
-    .uk-navbar-left {
-        padding-right: @navbar-nav-item-padding-horizontal;
-        border-right: @navbar-border-width solid @navbar-border;
-    }
+.hook-navbar() when (@navbar-mode = rail) and not (@navbar-border-width = 0) {
 
-    .uk-navbar-right {
-        padding-left: @navbar-nav-item-padding-horizontal;
-        border-left: @navbar-border-width solid @navbar-border;
-    }
+    border-bottom: @navbar-border-width solid @navbar-border;
+
+    .tm-header .tm-headerbar-top + * & { border-top: @navbar-border-width solid @navbar-border; }
+    .tm-header .tm-headerbar-top + * .uk-navbar-sticky > * > & { border-top-color: transparent !important; }
 
 }
 
 //
-// Frame mode
+// Mode Frame
 //
 
 .hook-navbar() when (@navbar-mode = frame) and not (@navbar-border-width = 0) {
 
-    .tm-header & { border: @navbar-border-width solid @navbar-border; }
-
-}
-
-.hook-navbar-misc() when (@navbar-mode = frame) and not (@navbar-border-width = 0) {
-
-    .tm-header .uk-navbar-container > .uk-container .uk-navbar-left {
-        padding-left: @navbar-nav-item-padding-horizontal;
-        padding-right: @navbar-nav-item-padding-horizontal;
-    }
-
-    .tm-header .uk-navbar-container > .uk-container .uk-navbar-right { padding-right: @navbar-nav-item-padding-horizontal; }
-
-}
-
-.hook-navbar-misc() when (@navbar-mode = frame) and (@navbar-mode-border-vertical = true) {
-
-    .tm-header .uk-navbar-left .uk-navbar-nav,
-    .tm-header .uk-navbar-left .uk-navbar-item,
-    .tm-header .uk-navbar-left .uk-navbar-toggle,
-    .tm-header .uk-navbar-center > :last-child,
-    .tm-header .uk-navbar-right .uk-navbar-nav > li:nth-last-child(n+2) > a { border-right: @navbar-border-width solid @navbar-border; }
-
-    .tm-header .uk-navbar-right .uk-navbar-nav,
-    .tm-header .uk-navbar-right .uk-navbar-item,
-    .tm-header .uk-navbar-right .uk-navbar-toggle,
-    .tm-header .uk-navbar-center .uk-navbar-nav,
-    .tm-header .uk-navbar-center .uk-navbar-item,
-    .tm-header .uk-navbar-center .uk-navbar-toggle,
-    .tm-header .uk-navbar-left .uk-navbar-nav > li:nth-child(n+2) > a,
-    .tm-header .uk-navbar-center .uk-navbar-nav > li:nth-child(n+2) > a { border-left: @navbar-border-width solid @navbar-border; }
+    border: @navbar-border-width solid @navbar-border;
 
 }
 
@@ -205,28 +267,15 @@
 .hook-inverse-navbar-toggle() {}
 .hook-inverse-navbar-toggle-hover() {}
 
-.hook-inverse() when (@navbar-mode = border) and not (@navbar-border-width = 0) {
-
-    .uk-navbar-container,
-    &.uk-navbar-container { border-bottom-color: @inverse-navbar-border; }
-
-}
-
-.hook-inverse() when (@navbar-mode = border) and (@navbar-mode-border-vertical = true) {
+.hook-inverse() when (@navbar-mode-border-vertical = partial) and not (@navbar-border-width = 0),
+                     (@navbar-mode-border-vertical = partial) and not (@navbar-border-width = 0) {
 
     .uk-navbar-left { border-right-color: @inverse-navbar-border; }
     .uk-navbar-right { border-left-color: @inverse-navbar-border; }
 
 }
 
-.hook-inverse() when (@navbar-mode = frame) and not (@navbar-border-width = 0) {
-
-    .uk-navbar { border-color: @inverse-navbar-border; }
-
-}
-
-.hook-inverse() when (@navbar-mode = frame) and (@navbar-mode-border-vertical = true) {
-
+.hook-inverse() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) {
 
     .uk-navbar-left .uk-navbar-nav,
     .uk-navbar-left .uk-navbar-item,
@@ -242,5 +291,39 @@
     .uk-navbar-center .uk-navbar-toggle,
     .uk-navbar-left .uk-navbar-nav > li:nth-child(n+2) > a,
     .uk-navbar-center .uk-navbar-nav > li:nth-child(n+2) > a { border-left-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode-border-vertical = all) and not (@navbar-border-width = 0) and not (@navbar-mode = frame) {
+
+    .uk-navbar-right { border-right-color: @inverse-navbar-border; }
+    .uk-navbar-left { border-left-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode = border) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-container:not(.uk-navbar-transparent),
+    &.uk-navbar-container:not(.uk-navbar-transparent) { border-bottom-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode = border-always) and not (@navbar-border-width = 0) {
+
+    .uk-navbar-container,
+    &.uk-navbar-container { border-bottom-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode = rail) and not (@navbar-border-width = 0) {
+
+    .uk-navbar { border-bottom-color: @inverse-navbar-border; }
+    .tm-header &.tm-headerbar-top + * .uk-navbar { border-top-color: @inverse-navbar-border; }
+
+}
+
+.hook-inverse() when (@navbar-mode = frame) and not (@navbar-border-width = 0) {
+
+    .uk-navbar { border-color: @inverse-navbar-border; }
 
 }

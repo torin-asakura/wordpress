@@ -2,44 +2,44 @@
 
 Name: Yoko
 Background: White
-Color: Blue
-Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/yoko/styles/default.jpg
+Color: Red
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/default.jpg
 
 Style: white-blue
 Name: White Blue
 Background: White
 Color: Blue
-Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/yoko/styles/white-blue.jpg
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-blue.jpg
 
 Style: white-darkblue
 Name: White Darkblue
 Background: White
-Color: Darkblue
-Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/yoko/styles/white-darkblue.jpg
+Color: Blue
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-darkblue.jpg
 
 Style: white-yellow
 Name: White Yellow
 Background: White
 Color: Yellow
-Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/yoko/styles/white-yellow.jpg
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-yellow.jpg
 
 Style: white-turquoise
 Name: White Turquoise
 Background: White
 Color: Turquoise
-Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/yoko/styles/white-turquoise.jpg
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-turquoise.jpg
 
 Style: white-red
 Name: White Red
 Background: White
 Color: Red
-Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/yoko/styles/white-red.jpg
+Type: Material
+Preview: https://yootheme.com/api/style/yoko/white-red.jpg
 
 */
 
@@ -61,11 +61,31 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/yoko/styles/w
 // Variables
 // ========================================================================
 
-@theme-page-container-background:               #fafafa;
-@theme-toolbar-background:                      #fff;
-@theme-toolbar-color-mode:                      none;
-@section-title-color:                           @global-emphasis-color;
+//
+// Page Container
+//
+
 @theme-page-container-width:                    1400px;
+@theme-page-container-background:               #fafafa;
+
+//
+// Toolbar
+//
+
+@theme-toolbar-background:                      @global-background;
+@theme-toolbar-color-mode:                      dark;
+
+//
+// Header
+//
+
+@theme-headerbar-font-size:                     @global-small-font-size;
+
+//
+// Section
+//
+
+@section-title-color:                           @global-emphasis-color;
 
 //
 // Box Decoration
@@ -126,10 +146,42 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/yoko/styles/w
 @inverse-theme-box-decoration-primary-background:       @inverse-global-border;
 @inverse-theme-box-decoration-secondary-background:     @inverse-global-border;
 
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             12px;
+@internal-theme-transition-border-border-gradient:       linear-gradient(120deg, @global-primary-background 0%, @global-primary-background 50%, @global-secondary-background 50%);
+@internal-theme-transition-border-hover-border-gradient: @internal-theme-transition-border-border-gradient;
+
+//
+// WooCommerce
+//
+
+//
+// Shop page
+//
+
+
+@woocommerce-shop-page-price-font-size:                 @global-small-font-size;
+@woocommerce-shop-page-price-line-height:               @global-line-height;
+
+//
+// Rating
+//
+
+@woocommerce-rating-color:                              @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:           13px;
+
 
 // Style
 // ========================================================================
 
 @import (optional) "../vendor/assets/uikit-themes/master-yoko/styles/@{internal-style}.less";
 
-@internal-style: ;
+@internal-style: ~'';
