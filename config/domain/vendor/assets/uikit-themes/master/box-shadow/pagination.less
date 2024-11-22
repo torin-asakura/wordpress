@@ -13,6 +13,7 @@
 
 @pagination-item-box-shadow:                    none;
 @pagination-item-hover-box-shadow:              none;
+@pagination-item-active-box-shadow:             none;
 
 
 // Component
@@ -32,7 +33,9 @@
     box-shadow: @pagination-item-hover-box-shadow;
 }
 
-.hook-pagination-item-active() {}
+.hook-pagination-item-active() when not (@pagination-item-active-box-shadow = none) {
+    box-shadow: @pagination-item-active-box-shadow;
+}
 
 .hook-pagination-item-disabled() {}
 
@@ -46,7 +49,17 @@
 // Inverse
 // ========================================================================
 
-.hook-inverse-pagination-item() {}
-.hook-inverse-pagination-item-hover() {}
-.hook-inverse-pagination-item-active() {}
+@inverse-pagination-item-box-shadow:            none;
+@inverse-pagination-item-hover-box-shadow:      none;
+@inverse-pagination-item-active-box-shadow:     none;
+
+.hook-inverse-pagination-item() when not (@pagination-item-box-shadow = none) {
+    box-shadow: @inverse-pagination-item-box-shadow;
+}
+.hook-inverse-pagination-item-hover() when not (@pagination-item-hover-box-shadow = none) {
+    box-shadow: @inverse-pagination-item-hover-box-shadow;
+}
+.hook-inverse-pagination-item-active() when not (@pagination-item-active-box-shadow = none) {
+    box-shadow: @inverse-pagination-item-active-box-shadow;
+}
 .hook-inverse-pagination-item-disabled() {}

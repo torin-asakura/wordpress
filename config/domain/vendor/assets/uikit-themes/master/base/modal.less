@@ -14,20 +14,27 @@
 // New
 //
 
-@modal-header-border-width:                    @global-border-width;
-@modal-header-border:                          @global-border;
+@modal-backdrop-filter:                         ~'';
 
-@modal-footer-border-width:                    @global-border-width;
-@modal-footer-border:                          @global-border;
+@modal-header-border-width:                     @global-border-width;
+@modal-header-border:                           @global-border;
 
-@modal-close-full-padding:                     @global-margin;
-@modal-close-full-background:                  @modal-dialog-background;
+@modal-footer-border-width:                     @global-border-width;
+@modal-footer-border:                           @global-border;
+
+@modal-close-full-padding:                      10px;
+@modal-close-full-background:                   @modal-dialog-background;
+
+@modal-close-full-padding-m:                    @global-margin;
 
 
 // Component
 // ========================================================================
 
-.hook-modal() {}
+.hook-modal() when not (@modal-backdrop-filter = ~'') {
+    backdrop-filter: @modal-backdrop-filter;
+    -webkit-backdrop-filter: @modal-backdrop-filter;
+}
 
 
 // Dialog
@@ -86,4 +93,15 @@
 // Miscellaneous
 // ========================================================================
 
-.hook-modal-misc() {}
+.hook-modal-misc() {
+
+    /* Tablet landscape and bigger */
+    @media (min-width: @breakpoint-medium) {
+
+        .uk-modal-close-full {
+            padding: @modal-close-full-padding-m;
+        }
+
+    }
+
+}

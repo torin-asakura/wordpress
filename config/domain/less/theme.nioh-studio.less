@@ -4,42 +4,42 @@ Name: Nioh Studio
 Background: White
 Color: Green
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/nioh-studio/styles/default.jpg
+Preview: https://yootheme.com/api/style/nioh-studio/default.jpg
 
 Style: black-blue
 Name: Black Blue
 Background: Black
 Color: Blue
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/nioh-studio/styles/black-blue.jpg
+Preview: https://yootheme.com/api/style/nioh-studio/black-blue.jpg
 
 Style: white-blue
 Name: White Blue
 Background: White
 Color: Blue
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/nioh-studio/styles/white-blue.jpg
+Preview: https://yootheme.com/api/style/nioh-studio/white-blue.jpg
 
 Style: white-orange
 Name: White Orange
 Background: White
 Color: Orange
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/nioh-studio/styles/white-orange.jpg
+Preview: https://yootheme.com/api/style/nioh-studio/white-orange.jpg
 
 Style: white-pink
 Name: White Pink
 Background: White
 Color: Pink
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/nioh-studio/styles/white-pink.jpg
+Preview: https://yootheme.com/api/style/nioh-studio/white-pink.jpg
 
 Style: white-turquoise
 Name: White Turquoise
 Background: White
 Color: Turquoise
 Type: Flat
-Preview: https://downloads-yootheme.storage.googleapis.com/library/nioh-studio/styles/white-turquoise.jpg
+Preview: https://yootheme.com/api/style/nioh-studio/white-turquoise.jpg
 
 */
 
@@ -61,7 +61,7 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/nioh-studio/s
 // ========================================================================
 
 //
-// Page border
+// Page
 //
 
 @theme-page-border:                                      @global-primary-background;
@@ -69,13 +69,19 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/nioh-studio/s
 @theme-page-border-width:                                10px;
 
 //
+// Header
+//
+
+@theme-headerbar-font-size:                              @global-small-font-size;
+
+//
 // Section
 //
 
+@section-title-font-size:                                @global-font-size;
+
 @internal-section-title-dash-border-height:              3px;
 @internal-section-title-dash-border-width:               18px;
-
-@section-title-font-size:                                @global-font-size;
 
 //
 // Box Decoration
@@ -97,10 +103,41 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/nioh-studio/s
 @inverse-theme-box-decoration-primary-border:            @inverse-global-primary-background;
 @inverse-theme-box-decoration-secondary-border:          @inverse-global-primary-background;
 
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             0 10px 0 0;
+
+//
+// Woocommerce
+//
+
+//
+// Shop page
+//
+
+@woocommerce-shop-page-price-margin-top:                 2px;
+
+//
+// Rating
+//
+
+@woocommerce-rating-font-size:                           13px;
+@woocommerce-rating-color:                               @global-secondary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-link-hover-color:                    @global-primary-background;
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
 
 // Style
 // ========================================================================
 
 @import (optional) "../vendor/assets/uikit-themes/master-nioh-studio/styles/@{internal-style}.less";
 
-@internal-style: ;
+@internal-style: ~'';

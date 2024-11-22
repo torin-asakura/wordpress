@@ -9,8 +9,6 @@ namespace YOOtheme;
 
 get_header();
 
-$config = app(Config::class);
-
 ?>
 
 <?php if (have_posts()) :
@@ -19,11 +17,11 @@ $config = app(Config::class);
 
     ?>
 
-    <div<?= get_attrs($attrs_title) ?>><?php printf(__( 'Search Results for &#8220;%s&#8221;' ), '<span>' . get_search_query() . '</span>') ?></div>
+    <div<?= get_attrs($attrs_title) ?>><?php printf(__('Search Results for &#8220;%s&#8221;'), '<span>' . get_search_query() . '</span>') ?></div>
 
     <div class="uk-grid uk-child-width-1-1" uk-grid>
-        <?php while (have_posts()) : the_post(); ?>
-        <div><?php get_template_part('templates/post/content', 'search'); ?></div>
+        <?php while (have_posts()) : the_post() ?>
+        <div><?php get_template_part('templates/post/content', 'search') ?></div>
         <?php endwhile ?>
     </div>
 

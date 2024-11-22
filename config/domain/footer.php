@@ -9,9 +9,10 @@
 
 namespace YOOtheme;
 
-list($config, $view) = app(Config::class, View::class);
+[$config, $view] = app(Config::class, View::class);
 
-?><?php if (!$config('app.isBuilder')) : ?>
+?>
+        <?php if (!$config('app.isBuilder')) : ?>
 
                         <?php if (is_active_sidebar('sidebar')) : ?>
                         </div>
@@ -22,17 +23,24 @@ list($config, $view) = app(Config::class, View::class);
                      <?php endif ?>
 
                 </div>
-            </div>
-            <?php endif ?>
+                <?php endif ?>
+
+            </main>
 
             <?php dynamic_sidebar("bottom:section") ?>
 
-            <?= $view->builder(json_encode($config('~theme.footer.content')), ['prefix' => 'footer']) ?>
+            <?php if ($config('~theme.footer.content')) : ?>
+            <footer>
+                <?= $view->builder(json_encode($config('~theme.footer.content')), ['prefix' => 'footer']) ?>
+            </footer>
+            <?php endif ?>
 
         </div>
 
-        <?php if ($config('~site.layout') == 'boxed') : ?>
+        <?php if ($config('~theme.site.layout') == 'boxed') : ?>
         </div>
-        <?php endif ?><?php wp_footer() ?>
+        <?php endif ?>
+
+        <?php wp_footer() ?>
     </body>
 </html>

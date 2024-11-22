@@ -13,6 +13,9 @@
 
 @form-border-radius:                            0;
 
+@form-multi-line-border-radius:                 ~'';
+
+@form-radio-border-radius:                      0;
 
 // Component
 // ========================================================================
@@ -23,7 +26,9 @@
 
 .hook-form-single-line() {}
 
-.hook-form-multi-line() {}
+.hook-form-multi-line() when not (@form-multi-line-border-radius = ~'') {
+    border-radius: @form-multi-line-border-radius;
+}
 
 .hook-form-focus() {}
 
@@ -45,13 +50,15 @@
 // Radio and checkbox
 // ========================================================================
 
-.hook-form-radio() {}
+.hook-form-radio() when not (@form-radio-border-radius = 0) {
+    border-radius: @form-radio-border-radius;
+}
 
 .hook-form-radio-focus() {}
 
 .hook-form-radio-checked() {}
 
-.hook-form-radio-checked-focus() { }
+.hook-form-radio-checked-focus() {}
 
 .hook-form-radio-disabled() {}
 
@@ -76,6 +83,12 @@
 .hook-form-horizontal-label() {}
 
 
+// Icon
+// ========================================================================
+
+.hook-form-icon() {}
+
+
 // Miscellaneous
 // ========================================================================
 
@@ -95,3 +108,5 @@
 .hook-inverse-form-radio-checked-focus() {}
 
 .hook-inverse-form-label() {}
+
+.hook-inverse-form-icon() {}

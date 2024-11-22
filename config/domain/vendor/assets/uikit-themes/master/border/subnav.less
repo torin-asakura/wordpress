@@ -11,6 +11,8 @@
 // New
 //
 
+@internal-subnav-divider-border-gradient:                 ~'';
+
 @subnav-pill-item-border-width:                           0;
 
 @subnav-pill-item-border:                                 transparent;
@@ -20,11 +22,11 @@
 
 @subnav-pill-item-disabled-border:                        transparent;
 
-@internal-subnav-pill-item-border-image-slice:            ;
-@internal-subnav-pill-item-border-image-width:            ;
-@internal-subnav-pill-item-border-image-repeat:           ;
+@internal-subnav-pill-item-border-image-slice:            ~'';
+@internal-subnav-pill-item-border-image-width:            ~'';
+@internal-subnav-pill-item-border-image-repeat:           ~'';
 
-@internal-subnav-pill-item-border-image:                  ;
+@internal-subnav-pill-item-border-image:                  ~'';
 
 
 // Component
@@ -42,7 +44,12 @@
 // Divider modifier
 // ========================================================================
 
-.hook-subnav-divider() {}
+.hook-subnav-divider() when not (@internal-subnav-divider-border-gradient = ~'') {
+    border-image: @internal-subnav-divider-border-gradient;
+    border-image-slice: 1;
+    // Fix Safari setting 3px `border-width` if `border-image` is used.
+    border-width: 0 0 0 @subnav-divider-border-width;
+}
 
 
 // Pill modifier
@@ -117,7 +124,9 @@
 .hook-inverse-subnav-item-hover() {}
 .hook-inverse-subnav-item-active() {}
 
-.hook-inverse-subnav-divider() {}
+.hook-inverse-subnav-divider() when not (@internal-subnav-divider-border-gradient = ~'') {
+    border-image: none;
+}
 
 .hook-inverse-subnav-pill-item() when not (@subnav-pill-item-border-width = 0) {
     border-color: @inverse-subnav-pill-item-border;

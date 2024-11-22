@@ -11,9 +11,9 @@
 // New
 //
 
-@internal-icon-button-gradient:                 ;
-@internal-icon-button-hover-gradient:           ;
-@internal-icon-button-active-gradient:          ;
+@internal-icon-button-gradient:                 ~'';
+@internal-icon-button-hover-gradient:           ~'';
+@internal-icon-button-active-gradient:          ~'';
 
 
 // Style modifiers
@@ -70,9 +70,9 @@
 .hook-inverse-icon-link-hover() {}
 .hook-inverse-icon-link-active() {}
 
-.hook-inverse-icon-button() when not (@internal-button-default-gradient = ~''),
-                                 not (@internal-button-default-hover-gradient = ~''),
-                                 not (@internal-button-default-active-gradient = ~'') {
+.hook-inverse-icon-button() when not (@internal-icon-button-gradient = ~''),
+                                 not (@internal-icon-button-hover-gradient = ~''),
+                                 not (@internal-icon-button-active-gradient = ~'') {
     background-image: none;
 }
 .hook-inverse-icon-button-hover() {}

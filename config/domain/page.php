@@ -9,9 +9,7 @@ namespace YOOtheme;
 
 get_header();
 
-/**
- * @var Config $config
- */
+/** @var Config $config */
 $config = app(Config::class);
 
 if ($config('app.isBuilder')) :

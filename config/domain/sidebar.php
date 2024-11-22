@@ -1,4 +1,4 @@
 <?php
 /**
- * This dummy sidebar file is needed for WooCommerce
+ * This dummy sidebar file is needed for WooCommerce.
  */

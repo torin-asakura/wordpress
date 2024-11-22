@@ -3,43 +3,43 @@
 Name: Pinewood Lake
 Background: Light
 Color: Orange
-Type: Skeuomorph
-Preview: https://downloads-yootheme.storage.googleapis.com/library/pinewood-lake/styles/default.jpg
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/default.jpg
 
-Style: white-green
-Name: White Green
+Style: light-green
+Name: Light Green
 Background: Light
 Color: Green
-Type: Skeuomorph
-Preview: https://downloads-yootheme.storage.googleapis.com/library/pinewood-lake/styles/white-green.jpg
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-green.jpg
 
-Style: white-petrol
-Name: White Petrol
+Style: light-petrol
+Name: Light Petrol
 Background: Light
 Color: Turquoise
-Type: Skeuomorph
-Preview: https://downloads-yootheme.storage.googleapis.com/library/pinewood-lake/styles/white-petrol.jpg
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-petrol.jpg
 
 Style: light-orange
 Name: Light Orange
 Background: Light
 Color: Orange
-Type: Skeuomorph
-Preview: https://downloads-yootheme.storage.googleapis.com/library/pinewood-lake/styles/light-orange.jpg
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-orange.jpg
 
 Style: light-blue
 Name: Light Blue
 Background: Light
 Color: Blue
-Type: Skeuomorph
-Preview: https://downloads-yootheme.storage.googleapis.com/library/pinewood-lake/styles/light-blue.jpg
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-blue.jpg
 
 Style: light-umber
 Name: Light Umber
 Background: Light
 Color: Orange
-Type: Skeuomorph
-Preview: https://downloads-yootheme.storage.googleapis.com/library/pinewood-lake/styles/light-umber.jpg
+Type: Skeuomorphic
+Preview: https://yootheme.com/api/style/pinewood-lake/light-umber.jpg
 
 */
 
@@ -61,6 +61,12 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/pinewood-lake
 // ========================================================================
 
 //
+// Header
+//
+
+@theme-headerbar-font-size:                              @global-small-font-size;
+
+//
 // Section
 //
 
@@ -76,14 +82,11 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/pinewood-lake
 @internal-theme-mask-default-border-image:               "../vendor/assets/uikit-themes/master-pinewood-lake/images/mask-default-image.svg";
 @internal-theme-mask-default-border-image-slice:         50;
 
+@internal-theme-mask-default-image:                     "../vendor/assets/uikit-themes/master-pinewood-lake/images/mask-default-image.svg";
+
 //
 // Box Decoration
 //
-
-@theme-box-decoration-top:                               0;
-@theme-box-decoration-bottom:                            0;
-@theme-box-decoration-left:                              0;
-@theme-box-decoration-right:                             0;
 
 @theme-box-decoration-default-transform-horizontal:      0;
 @theme-box-decoration-default-transform-vertical:        0;
@@ -139,10 +142,33 @@ Preview: https://downloads-yootheme.storage.googleapis.com/library/pinewood-lake
 @inverse-theme-box-decoration-primary-border:            @inverse-global-primary-background;
 @inverse-theme-box-decoration-secondary-border:          @inverse-global-primary-background;
 
+//
+// Transition Border
+//
+
+@theme-transition-border-hover-border-width:             17px;
+
+//
+// Woocommerce
+//
+
+//
+// Rating
+//
+
+@woocommerce-rating-background-color:                    fade(@global-secondary-background, 20%);
+@woocommerce-rating-color:                               @global-primary-background;
+
+//
+// Widgets
+//
+
+@woocommerce-widget-active-filters-font-size:            @global-small-font-size;
+
 
 // Style
 // ========================================================================
 
 @import (optional) "../vendor/assets/uikit-themes/master-pinewood-lake/styles/@{internal-style}.less";
 
-@internal-style: ;
+@internal-style: ~'';

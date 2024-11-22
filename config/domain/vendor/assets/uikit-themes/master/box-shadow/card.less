@@ -12,6 +12,7 @@
 //
 
 @card-hover-box-shadow:                        none;
+@internal-card-hover-transition-box-shadow:    0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0);
 
 @card-default-box-shadow:                      none;
 @card-default-hover-box-shadow:                none;
@@ -122,4 +123,16 @@
 // Miscellaneous
 // ========================================================================
 
-.hook-card-misc() {}
+.hook-card-misc() when not (@card-hover-box-shadow = none) {
+
+    .uk-card-hover:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary) {
+        box-shadow: @internal-card-hover-transition-box-shadow;
+    }
+
+}
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-card-badge() {}

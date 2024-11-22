@@ -15,21 +15,21 @@
 @button-background-position-x:                  0;
 @button-hover-background-position-x:            0;
 
-@internal-button-default-gradient:              ;
-@internal-button-default-hover-gradient:        ;
-@internal-button-default-active-gradient:       ;
+@internal-button-default-gradient:              ~'';
+@internal-button-default-hover-gradient:        ~'';
+@internal-button-default-active-gradient:       ~'';
 
-@internal-button-primary-gradient:              ;
-@internal-button-primary-hover-gradient:        ;
-@internal-button-primary-active-gradient:       ;
+@internal-button-primary-gradient:              ~'';
+@internal-button-primary-hover-gradient:        ~'';
+@internal-button-primary-active-gradient:       ~'';
 
-@internal-button-secondary-gradient:            ;
-@internal-button-secondary-hover-gradient:      ;
-@internal-button-secondary-active-gradient:     ;
+@internal-button-secondary-gradient:            ~'';
+@internal-button-secondary-hover-gradient:      ~'';
+@internal-button-secondary-active-gradient:     ~'';
 
-@internal-button-danger-gradient:               ;
-@internal-button-danger-hover-gradient:         ;
-@internal-button-danger-active-gradient:        ;
+@internal-button-danger-gradient:               ~'';
+@internal-button-danger-hover-gradient:         ~'';
+@internal-button-danger-active-gradient:        ~'';
 
 
 // Component
@@ -38,8 +38,6 @@
 .hook-button() { background-origin: border-box; }
 
 .hook-button-hover() {}
-
-.hook-button-focus() {}
 
 .hook-button-active() {}
 
@@ -53,10 +51,6 @@
 }
 
 .hook-button-hover() when not (@button-hover-background-position-x = @button-background-position-x) {
-    background-position-x: @button-hover-background-position-x;
-}
-
-.hook-button-focus() when not (@button-hover-background-position-x = @button-background-position-x) {
     background-position-x: @button-hover-background-position-x;
 }
 

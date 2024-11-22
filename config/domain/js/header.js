@@ -1,78 +1,97 @@
-import {$, $$, addClass, attr, closest, css, hasClass, offset, removeClass} from 'uikit-util';
+import { $, before, css, hasAttr, matches, observeResize, offset, remove, toPx } from 'uikit-util';
+
+const Section = {
+    computed: {
+        section: {
+            get: () =>
+                $('.tm-header ~ [class*="uk-section"], .tm-header ~ * > [class*="uk-section"]'),
+            observe: () => '.tm-page',
+        },
+    },
+
+    watch: {
+        section() {
+            this.$emit();
+        },
+    },
+};
 
 export const Header = {
+    mixins: [Section],
+
+    computed: {
+        anchor: {
+            get() {
+                return (
+                    this.section &&
+                    !matches(this.section, '[tm-header-transparent-noplaceholder]') &&
+                    ($('.uk-grid,.uk-panel:not(.uk-container)', this.section) || $('.tm-main > *'))
+                );
+            },
+        },
+    },
+
+    observe: [
+        {
+            observe: observeResize,
+            handler() {
+                this.$emit();
+            },
+        },
+    ],
+
+    watch: {
+        anchor() {
+            this.$emit();
+        },
+
+        section(section, prev) {
+            prev && this.$update();
+        },
+    },
 
     update: [
-
         {
             read() {
-                return getSection() ? {height: this.$el.offsetHeight} : false;
+                return { height: this.$el.offsetHeight };
             },
 
-            write({height}) {
-
-                const [section, modifier] = getSection();
-
-                if (!hasClass(this.$el, 'tm-header-transparent')) {
-
-                    addClass(this.$el, 'tm-header-transparent tm-header-overlay');
-                    addClass($$('.tm-headerbar-top, .tm-headerbar-bottom, .tm-toolbar-transparent'), `uk-${modifier}`);
-                    removeClass($('.tm-toolbar-transparent.tm-toolbar-default'), 'tm-toolbar-default');
-
-                    if (!$('[uk-sticky]', this.$el)) {
-                        addClass($('.uk-navbar-container', this.$el), `uk-navbar-transparent uk-${modifier}`);
-                    }
-
+            write({ height }) {
+                if (!height || !this.anchor) {
+                    remove(this.placeholder);
+                    return;
                 }
 
-                css($('.tm-header-placeholder', section), {height});
+                this.placeholder ||= $(
+                    '<div class="tm-header-placeholder uk-margin-remove-adjacent">'
+                );
+
+                if (this.anchor.previousElementSibling !== this.placeholder) {
+                    before(this.anchor, this.placeholder);
+                }
+
+                css(this.placeholder, { height });
             },
-
-            events: ['resize']
-        }
-
-    ]
-
+        },
+    ],
 };
 
 export const Sticky = {
+    mixins: [Section],
 
     update: {
-
         read() {
-
-            const [section, modifier] = getSection() || [];
-
-            if (!modifier || !closest(this.$el, '[uk-header]')) {
-                return;
-            }
-
-            this.animation = 'uk-animation-slide-top';
-            this.clsInactive = `uk-navbar-transparent uk-${modifier}`;
-            this.top = section.offsetHeight <= window.innerHeight
-                ? offset(section).bottom
-                : offset(section).top + 300;
-
+            return (
+                this.section &&
+                hasAttr(this.$el, 'tm-section-start') && {
+                    start:
+                        this.section.offsetHeight <= toPx('100vh')
+                            ? offset(this.section).bottom
+                            : offset(this.section).top + 300,
+                }
+            );
         },
 
-        events: ['resize']
-
-    }
-
+        events: ['resize'],
+    },
 };
-
-export const Navbar = {
-
-    connected() {
-        if (this.dropbar && getSection()) {
-            addClass(this.dropbar, 'uk-navbar-dropbar-slide');
-        }
-    }
-
-};
-
-function getSection() {
-    const section = $('.tm-header ~ [class*="uk-section"], .tm-header ~ :not(.tm-page) > [class*="uk-section"]');
-    const modifier = attr(section, 'tm-header-transparent');
-    return section && modifier && [section, modifier];
-}

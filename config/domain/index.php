@@ -57,8 +57,8 @@ $config = app(Config::class);
     ?>
 
     <div<?= get_attrs($attrs) ?>>
-        <?php while(have_posts()) : the_post(); ?>
-        <div><?php get_template_part('templates/post/content', get_post_format()); ?></div>
+        <?php while(have_posts()) : the_post() ?>
+        <div><?php get_template_part('templates/post/content', get_post_format()) ?></div>
         <?php endwhile ?>
     </div>
 

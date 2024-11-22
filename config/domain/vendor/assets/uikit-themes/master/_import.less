@@ -2,10 +2,10 @@
 // Fonts
 //
 
-@internal-fonts: ;
+@internal-fonts: ~'';
 
 .font() when not (@internal-fonts = ~'') {
-    @import 'https://fonts.googleapis.com/css?family=@{internal-fonts}';
+    @import (css) 'https://fonts.googleapis.com/css?family=@{internal-fonts}';
 }
 
 .font();
@@ -20,3 +20,4 @@
 @import "border-radius/_import.less";
 @import "background-image/_import.less";
 @import "box-shadow/_import.less";
+@import "transform/_import.less";

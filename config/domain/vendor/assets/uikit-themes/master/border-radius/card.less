@@ -13,6 +13,8 @@
 
 @card-border-radius:                           0;
 
+@card-badge-border-radius:                     0;
+
 
 // Component
 // ========================================================================
@@ -65,7 +67,9 @@
 // Badge
 // ========================================================================
 
-.hook-card-badge() {}
+.hook-card-badge() when not (@card-badge-border-radius = 0) {
+    border-radius: @card-badge-border-radius;
+}
 
 
 // Hover modifier
@@ -118,3 +122,9 @@
     .uk-card-body .uk-nav-default > li > a { border-radius: 0; }
 
 }
+
+
+// Inverse
+// ========================================================================
+
+.hook-inverse-card-badge() {}

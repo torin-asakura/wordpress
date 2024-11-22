@@ -21,26 +21,21 @@
 @alert-primary-color:                                   #8E856A;
 
 //
-// Base
-//
-
-@base-link-text-decoration:                             underline;
-@base-link-hover-text-decoration:                       underline;
-
-//
 // Button
 //
 
 @button-primary-color:                                  @global-emphasis-color;
 @button-primary-hover-background:                       @global-secondary-background;
 @button-primary-active-background:                      @global-secondary-background;
+@button-link-hover-color:                               @global-muted-color;
 
 //
 // Card
 //
 
+@card-badge-color:                                      @global-emphasis-color;
 @card-primary-color:                                    @global-emphasis-color;
-@card-primary-color-mode:                               none;
+@card-primary-color-mode:                               dark;
 
 //
 // Divider
@@ -56,16 +51,34 @@
 @dotnav-item-active-background:                         @global-secondary-background;
 
 //
+// Form
+//
+
+@form-radio-checked-icon-color:                         @global-emphasis-color;
+@form-radio-checked-focus-background:                   darken(@global-primary-background, 6%);
+
+//
 // Label
 //
 
-@label-background: #2B2B2B;
+@label-background:                                      #2B2B2B;
+
+//
+// Nav
+//
+
+@nav-default-item-color:                               #808080;
+@nav-default-sublist-item-color:                       #808080;
+@nav-primary-item-color:                               #808080;
+@nav-primary-sublist-item-color:                       #808080;
 
 //
 // Navbar
 //
 
 @navbar-nav-item-color:                                 #808080;
+@navbar-toggle-color:                                   #808080;
+@navbar-toggle-hover-color:                             @global-emphasis-color;
 
 //
 // Section
@@ -99,4 +112,8 @@
 
 @tile-primary-color-mode:                               dark;
 
+//
+// Woocommerce
+//
 
+@woocommerce-rating-color:                              @global-secondary-background;

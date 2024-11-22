@@ -11,11 +11,14 @@
 // New
 //
 
+@navbar-box-shadow:                             none;
+
+@navbar-nav-item-hover-box-shadow:              none;
+@navbar-nav-item-active-box-shadow:             none;
+
 @navbar-sticky-box-shadow:                      none;
 
 @navbar-dropdown-box-shadow:                    none;
-
-@navbar-dropbar-box-shadow:                     none;
 
 
 // Component
@@ -27,7 +30,26 @@
 // Container
 // ========================================================================
 
-.hook-navbar-container() {}
+//
+// 1. Make sure box shadow is not shown below content
+//    `z-index` is taken from `uk-navbar-center`
+// 2. This means the toolbar and headerbar also need a `z-index`, so
+//    there dropdowns are shown above the navbar
+//
+
+.hook-navbar-container() when not (@navbar-box-shadow = none) {
+    box-shadow: @navbar-box-shadow;
+    // 1
+    position: relative;
+    z-index: @global-z-index - 10;
+}
+
+// 2
+.tm-toolbar when not (@navbar-box-shadow = none) { z-index: @global-z-index - 10 + 2; }
+.tm-headerbar-top when not (@navbar-box-shadow = none) {
+    position: relative;
+    z-index: @global-z-index - 10 + 1;
+}
 
 
 // Nav
@@ -35,11 +57,15 @@
 
 .hook-navbar-nav-item() {}
 
-.hook-navbar-nav-item-hover() {}
+.hook-navbar-nav-item-hover() when not (@navbar-nav-item-hover-box-shadow = none) {
+    box-shadow: @navbar-nav-item-hover-box-shadow;
+}
 
 .hook-navbar-nav-item-onclick() {}
 
-.hook-navbar-nav-item-active() {}
+.hook-navbar-nav-item-active() when not (@navbar-nav-item-active-box-shadow = none) {
+    box-shadow: @navbar-nav-item-active-box-shadow;
+}
 
 
 // Item
@@ -74,7 +100,7 @@
 .hook-navbar-transparent() {}
 
 .hook-navbar-sticky() when not (@navbar-sticky-box-shadow = none) {
-    box-shadow: @navbar-sticky-box-shadow;
+    &:not(.uk-navbar-transparent) { box-shadow: @navbar-sticky-box-shadow; }
 }
 
 
@@ -85,9 +111,13 @@
     box-shadow: @navbar-dropdown-box-shadow;
 }
 
+.hook-navbar-dropdown-large() {}
+
 .hook-navbar-dropdown-dropbar() when not (@navbar-dropdown-box-shadow = none) {
     box-shadow: none;
 }
+
+.hook-navbar-dropdown-dropbar-large() {}
 
 
 // Dropdown nav
@@ -99,6 +129,8 @@
 
 .hook-navbar-dropdown-nav-item-hover() {}
 
+.hook-navbar-dropdown-nav-subtitle() {}
+
 .hook-navbar-dropdown-nav-header() {}
 
 .hook-navbar-dropdown-nav-divider() {}
@@ -108,10 +140,6 @@
 // ========================================================================
 
 .hook-navbar-dropbar() {}
-
-.hook-navbar-dropbar-slide() when not (@navbar-dropbar-box-shadow = none) {
-    box-shadow: @navbar-dropbar-box-shadow;
-}
 
 
 // Miscellaneous

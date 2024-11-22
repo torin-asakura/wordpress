@@ -13,8 +13,12 @@
 
 @internal-base-body-mode:                       none; // none, overlay
 @internal-base-body-overlay-z-index:            @global-z-index + 100;
-@internal-base-body-overlay-image:              ;
+@internal-base-body-overlay-image:              ~'';
 @internal-base-body-overlay-opacity:            0.1;
+@internal-base-body-overlay-blend-mode:         ~'';
+@internal-base-body-overlay-background-repeat:  repeat;
+@internal-base-body-overlay-background-size:    auto;
+@internal-base-body-overlay-image-2:            ~'';
 
 @base-code-padding-horizontal:                  0;
 @base-code-padding-vertical:                    0;
@@ -46,7 +50,7 @@
     position: relative;
 
     &::after {
-        content: '';
+        content: "";
         position: fixed;
         top: 0;
         bottom: 0;
@@ -57,6 +61,29 @@
         opacity: @internal-base-body-overlay-opacity;
         pointer-events: none;
     }
+
+}
+
+.hook-base-body() when not (@internal-base-body-overlay-blend-mode = ~'') {
+
+    &::after { mix-blend-mode: @internal-base-body-overlay-blend-mode; }
+
+}
+
+.hook-base-body() when not (@internal-base-body-overlay-background-repeat = repeat) {
+
+    &::after { background-repeat: @internal-base-body-overlay-background-repeat; }
+}
+
+.hook-base-body() when not (@internal-base-body-overlay-background-size = auto) {
+
+    &::after { background-size: @internal-base-body-overlay-background-size; }
+
+}
+
+.hook-base-body() when not (@internal-base-body-overlay-image-2 = ~'') {
+
+    &::after { background-image: url("@{internal-base-body-overlay-image}"), url("@{internal-base-body-overlay-image-2}"); }
 
 }
 

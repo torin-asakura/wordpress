@@ -35,8 +35,10 @@
 @section-xlarge-padding-vertical-m:               (@global-large-margin + @global-xlarge-margin);
 
 @section-default-background:                      @global-background;
+@section-default-color-mode:                      dark;
 
 @section-muted-background:                        @global-muted-background;
+@section-muted-color-mode:                        dark;
 
 @section-primary-background:                      @global-primary-background;
 @section-primary-color-mode:                      light;
@@ -54,10 +56,11 @@
  */
 
 .uk-section {
+    display: flow-root;
     box-sizing: border-box; /* 1 */
     padding-top: @section-padding-vertical;
     padding-bottom: @section-padding-vertical;
-    .hook-section;
+    .hook-section();
 }
 
 /* Desktop and bigger */
@@ -69,18 +72,6 @@
     }
 
 }
-
-/*
- * Micro clearfix
- */
-
-.uk-section::before,
-.uk-section::after {
-    content: "";
-    display: table;
-}
-
-.uk-section::after { clear: both; }
 
 /*
  * Remove margin from the last-child
@@ -129,7 +120,6 @@
 
 }
 
-
 /*
  * XLarge
  */
@@ -158,39 +148,49 @@
  */
 
 .uk-section-default {
+    --uk-inverse: @section-default-color-mode;
     background: @section-default-background;
-    .hook-section-default;
+    .hook-section-default();
 }
+
+.uk-section-default:not(.uk-preserve-color):extend(.uk-light all) when (@section-default-color-mode = light) {}
+.uk-section-default:not(.uk-preserve-color):extend(.uk-dark all) when (@section-default-color-mode = dark) {}
 
 /*
  * Muted
  */
 
 .uk-section-muted {
+    --uk-inverse: @section-muted-color-mode;
     background: @section-muted-background;
-    .hook-section-muted;
+    .hook-section-muted();
 }
+
+.uk-section-muted:not(.uk-preserve-color):extend(.uk-light all) when (@section-muted-color-mode = light) {}
+.uk-section-muted:not(.uk-preserve-color):extend(.uk-dark all) when (@section-muted-color-mode = dark) {}
+
 
 /*
  * Primary
  */
 
 .uk-section-primary {
+    --uk-inverse: @section-primary-color-mode;
     background: @section-primary-background;
-    .hook-section-primary;
+    .hook-section-primary();
 }
 
 .uk-section-primary:not(.uk-preserve-color):extend(.uk-light all) when (@section-primary-color-mode = light) {}
 .uk-section-primary:not(.uk-preserve-color):extend(.uk-dark all) when (@section-primary-color-mode = dark) {}
-
 
 /*
  * Secondary
  */
 
 .uk-section-secondary {
+    --uk-inverse: @section-secondary-color-mode;
     background: @section-secondary-background;
-    .hook-section-secondary;
+    .hook-section-secondary();
 }
 
 .uk-section-secondary:not(.uk-preserve-color):extend(.uk-light all) when (@section-secondary-color-mode = light) {}
@@ -206,14 +206,14 @@
  */
 
 .uk-section-overlap {
-    .hook-section-overlap;
+    .hook-section-overlap();
 }
 
 
 // Hooks
 // ========================================================================
 
-.hook-section-misc;
+.hook-section-misc();
 
 .hook-section() {}
 .hook-section-default() {}

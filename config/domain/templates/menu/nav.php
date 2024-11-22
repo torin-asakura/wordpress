@@ -1,37 +1,67 @@
 <?php
 
+$hasActiveChild = function ($item) use (&$hasActiveChild) {
+    foreach ($item->children ?? [] as $child) {
+        if ($child->active || $hasActiveChild($child)) {
+            return true;
+        }
+    }
+    return false;
+};
+
 foreach ($items as $item) {
 
-    $attrs = ['class' => []];
+    // Config
+    $menuposition = '~menu';
+    $menuitem = "~theme.menu.items.{$item->id}";
+
+    // Children
     $children = isset($item->children);
     $indention = str_pad("\n", $level + 1, "\t");
-    $title = $item->title;
 
-    // Config
-    $config->addAlias('~menuitem', "~theme.menu.items.{$item->id}");
+    // List item
+    $attrs = ['class' => [$item->class ?? '']];
 
-    // Active?
     if ($item->active) {
         $attrs['class'][] = 'uk-active';
     }
 
-    // Icon
-    $icon = $config('~menuitem.icon');
-    if (preg_match('/\.(gif|png|jpg|svg)$/i', $icon)) {
-        $icon = "<img src=\"{$icon}\" alt=\"{$item->title}\">";
-    } elseif ($icon) {
-        $icon = "<span class=\"uk-margin-small-right\" uk-icon=\"icon: {$icon}\"></span>";
+    // Title
+    $title = $item->title;
+
+    // Parent Icon
+    if ($children && $level == 1 && $config('~menu.accordion')) {
+        $title .= ' <span uk-nav-parent-icon></span>';
     }
 
-    // Show Icon only
-    if ($icon && $config('~menuitem.icon-only')) {
+    // Subtitle
+    if ($title && $subtitle = $config("$menuitem.subtitle")) {
+        $title = "{$title}<div class=\"uk-nav-subtitle\">{$subtitle}</div>";
+    }
+
+    // Image
+    $image = $view('~theme/templates/menu/image', ['item' => $item]);
+
+    if ($image && $config("$menuitem.image_only")) {
         $title = '';
     }
 
-    // Header
-    if ($item->type == 'header' || ($item->type === 'custom' && $item->url === '#')) {
+    // Title Suffix, e.g. cart quantity
+    if ($suffix = $config("$menuitem.title-suffix")) {
+        $title .= " {$suffix}";
+    }
 
-        $title = $icon . $title;
+    // Markup
+    if ($title && $subtitle && $image) {
+        $title = "<div class=\"uk-grid uk-grid-small" . ($level >= 1 && ($config("$menuposition.image_align") == 'center') ? ' uk-flex-middle' : '') . "\"><div class=\"uk-width-auto\">{$image}</div><div class=\"uk-width-expand\">{$title}</div></div>";
+    } elseif ($title && $subtitle) {
+        $title = "<div>{$title}</div>";
+    } elseif ($image) {
+        $title = "{$image} {$title}";
+    }
+
+    // Heading
+    if ($item->type === 'heading') {
 
         // Divider
         if ($item->divider && !$children) {
@@ -41,6 +71,9 @@ foreach ($items as $item) {
             $title = "<a href>{$title}</a>";
             if ($level === 1) {
                 $attrs['class'][] = 'js-accordion';
+                if ($hasActiveChild($item)) {
+                    $attrs['class'][] = 'uk-open';
+                }
             }
         } else {
             $attrs['class'][] = 'uk-nav-header';
@@ -67,26 +100,24 @@ foreach ($items as $item) {
             $link['rel'] = $item->anchor_rel;
         }
 
-        // Additional Class
-        if (isset($item->class)) {
-            $link['class'] = $item->class;
+        if (isset($item->anchor_css)) {
+            $link['class'][] = $item->anchor_css;
         }
 
-        $title = "<a{$this->attrs($link)}>{$icon}{$title}</a>";
+        $title = "<a{$this->attrs($link)}>{$title}</a>";
     }
 
-    // Children?
     if ($children) {
 
         $attrs['class'][] = 'uk-parent';
 
-        $children = ['class' => []];
+        $attrs_children = ['class' => []];
 
         if ($level == 1) {
-            $children['class'][] = 'uk-nav-sub';
+            $attrs_children['class'][] = 'uk-nav-sub';
         }
 
-        $children = "{$indention}<ul{$this->attrs($children)}>\n{$this->self(['items' => $item->children, 'level' => $level + 1])}</ul>";
+        $children = "{$indention}<ul{$this->attrs($attrs_children)}>\n{$this->self(['items' => $item->children, 'level' => $level + 1])}</ul>";
     }
 
     echo "{$indention}<li{$this->attrs($attrs)}>{$title}{$children}</li>";

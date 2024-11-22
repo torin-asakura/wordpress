@@ -17,8 +17,6 @@
 @card-title-letter-spacing:                     @global-primary-letter-spacing;
 @card-title-font-style:                         @global-primary-font-style;
 
-@card-badge-color:                              @global-color;
-@card-badge-font-size:                          @global-font-size;
 @card-badge-font-family:                        @global-secondary-font-family;
 @card-badge-font-weight:                        @global-secondary-font-weight;
 @card-badge-text-transform:                     @global-secondary-text-transform;
@@ -83,11 +81,6 @@
 
 // Badge
 // ========================================================================
-
-.hook-card-badge() {
-    color: @card-badge-color;
-    font-size: @card-badge-font-size;
-}
 
 .hook-card-badge() when not (@card-badge-font-family = inherit) {
     font-family: @card-badge-font-family;
@@ -155,6 +148,4 @@
 // Inverse
 // ========================================================================
 
-@inverse-card-badge-color:                      @inverse-global-color;
-
-.hook-inverse-card-badge() { color: @inverse-card-badge-color; }
+.hook-inverse-card-badge() {}

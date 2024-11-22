@@ -11,35 +11,48 @@
 // New
 //
 
+@internal-heading-small-mode:                        none; // none, glitch
 @internal-heading-medium-mode:                       none; // none, glitch
 @internal-heading-large-mode:                        none; // none, glitch
 @internal-heading-xlarge-mode:                       none; // none, glitch
 @internal-heading-2xlarge-mode:                      none; // none, glitch
+@internal-heading-3xlarge-mode:                      none; // none, glitch
 
-@internal-heading-glitch-color-1:                    @global-primary-background;
-@internal-heading-glitch-color-2:                    @global-secondary-background;
-@internal-heading-glitch-duration:                   0.65s;
+@internal-heading-glitch-animation:                 uk-glitch-text-shadow;
+@internal-heading-glitch-duration:                  0.65s;
 
 
 // Component
 // ========================================================================
 
-.hook-heading-small() {}
+.hook-heading-small() when (@internal-heading-small-mode = glitch) {
+    animation: @internal-heading-glitch-duration ease both infinite;
+    animation-name: @internal-heading-glitch-animation;
+}
 
 .hook-heading-medium() when (@internal-heading-medium-mode = glitch) {
-    animation: uk-text-shadow-glitch @internal-heading-glitch-duration cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite !important;
+    animation: @internal-heading-glitch-duration ease both infinite;
+    animation-name: @internal-heading-glitch-animation;
 }
 
 .hook-heading-large() when (@internal-heading-large-mode = glitch) {
-    animation: uk-text-shadow-glitch @internal-heading-glitch-duration cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite !important;
+    animation: @internal-heading-glitch-duration ease both infinite;
+    animation-name: @internal-heading-glitch-animation;
 }
 
 .hook-heading-xlarge() when (@internal-heading-xlarge-mode = glitch) {
-    animation: uk-text-shadow-glitch @internal-heading-glitch-duration cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite !important;
+    animation: @internal-heading-glitch-duration ease both infinite;
+    animation-name: @internal-heading-glitch-animation;
 }
 
 .hook-heading-2xlarge() when (@internal-heading-2xlarge-mode = glitch) {
-    animation: uk-text-shadow-glitch @internal-heading-glitch-duration cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite !important;
+    animation: @internal-heading-glitch-duration ease both infinite;
+    animation-name: @internal-heading-glitch-animation;
+}
+
+.hook-heading-3xlarge() when (@internal-heading-3xlarge-mode = glitch) {
+    animation: @internal-heading-glitch-duration ease both infinite;
+    animation-name: @internal-heading-glitch-animation;
 }
 
 
@@ -79,6 +92,8 @@
 .hook-inverse-heading-xlarge() {}
 
 .hook-inverse-heading-2xlarge() {}
+
+.hook-inverse-heading-3xlarge() {}
 
 .hook-inverse-heading-divider() {}
 
