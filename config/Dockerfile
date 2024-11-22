@@ -7,7 +7,7 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" && \
 
 # Установка зависимостей
 RUN apt-get update && \
-    apt-get install -yq mariadb-client netcat sudo less unzip git && \
+    apt-get install -yq mariadb-client netcat-traditional sudo less unzip git && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Установка WP-CLI
@@ -21,6 +21,9 @@ RUN curl -sL https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
     mkdir /var/www/.composer && \
     chown www-data:www-data /var/www/.composer
+
+# Разрешить установку плагина
+RUN sudo -u www-data composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
 
 # Установка инструментов разработки
 RUN sudo -u www-data composer global require \
