@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   traefik:
     image: traefik:v3
@@ -28,7 +30,7 @@ services:
     volumes:
       - ./.data/mysql:/var/lib/mysql
     environment:
-      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=wordpress
       - MYSQL_PASSWORD=password
       - MYSQL_USER=wordpress
@@ -45,14 +47,9 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_PASSWORD: password
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_URL: https://wp.local.torinasakura.dev
-      WORDPRESS_PREVIEW_URL: https://preview.wp.local.torinasakura.dev
-      WORDPRESS_TITLE: Project starter
-      WORDPRESS_ADMIN_USER: admin
-      WORDPRESS_ADMIN_PASSWORD: password
-      WORDPRESS_ADMIN_EMAIL: admin@example.com
     volumes:
       - ./wordpress:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
     depends_on:
       - wordpress-db
     networks:

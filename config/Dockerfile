@@ -20,8 +20,5 @@ RUN curl -sL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
 COPY ./install.sh /usr/local/bin/install_wordpress
 RUN chmod +x /usr/local/bin/install_wordpress
 
-# Копирование темы
-COPY ./theme /var/www/theme
-
 # Запуск
 CMD ["php-fpm"]
