@@ -29,8 +29,7 @@ services:
 
   wordpress-fpm:
     build: ./config
-    command: bash -c 'install_wordpress && docker-entrypoint.sh php-fpm'
-    user: www-data
+    command: bash -c 'chown -R www-data:www-data /var/www/html && sudo -E -u www-data HOME=/var/www/html install_wordpress && sudo -E -u www-data HOME=/var/www/html docker-entrypoint.sh php-fpm'
     working_dir: /var/www/html
     environment:
       WORDPRESS_ADMIN_USER: admin
