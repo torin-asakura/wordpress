@@ -15,11 +15,13 @@ then
     echo
 fi
 
-if wp core is-installed
-then
-    echo "WordPress is already installed, exiting."
-    exit
-fi
+# if wp core is-installed
+# then
+#     echo "WordPress is already installed, exiting."
+#     exit
+# fi
+#
+# exit 1
 
 wp core download --force --version=5.4
 
@@ -40,17 +42,16 @@ wp core install \
 cp -r /opt/yootheme /var/www/html/wp-content/themes
 cp -r /opt/default-theme /var/www/html/wp-content/themes
 
-wp theme activate yootheme
-wp theme delete twentysixteen twentyseventeen twentynineteen twentytwenty
+wp theme delete twentyseventeen twentynineteen twentytwenty
 
 wp config set WP_AUTO_UPDATE_CORE false
 
 wp plugin delete akismet hello
-wp plugin install --force --activate https://github.com/polylang/polylang/archive/2.7.1.zip
-wp plugin install --force --activate https://downloads.wordpress.org/plugin/2fas-light.zip
-wp plugin install --force --activate https://github.com/Yoast/wordpress-seo/archive/13.4.zip
+wp plugin install --force  https://github.com/polylang/polylang/archive/2.7.1.zip
+wp plugin install --force  https://downloads.wordpress.org/plugin/2fas-light.zip
+wp plugin install --force  https://github.com/Yoast/wordpress-seo/archive/13.4.zip
 
-wp term delete category 1
-wp post delete 1
+# wp term delete category 1
+# wp post delete 1
 
 echo "Great. You can now log into WordPress at: $WORDPRESS_URL/wp-admin"
