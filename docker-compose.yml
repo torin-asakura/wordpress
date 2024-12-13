@@ -1,77 +1,85 @@
-version: '3.7'
+version: "3.9"
 
 services:
   traefik:
-    image: torinasakura/traefik:wp
-    command: --api --docker
+    image: traefik:v3
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.websecure.http.tls=true
+      - --certificatesresolvers.le.acme.email=me@torinasakura.name
+      - --certificatesresolvers.le.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.le.acme.httpchallenge.entrypoint=web
+      - --accesslog
+      - --log.level=DEBUG
     ports:
-      - 80:80
-      - 443:443
-      - 8080:8080
+      - '80:80'
+      - '8080:8080'
+      - '443:443'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./letsencrypt:/letsencrypt
     networks:
-      default:
-        aliases:
-          - traefik-wp
       traefik-wp:
         ipv4_address: 172.16.233.99
 
   wordpress-db:
-    image: mariadb
+    image: mariadb:latest
     volumes:
-      - './.data/mysql:/var/lib/mysql'
+      - ./.data/mysql:/var/lib/mysql
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=wordpress
       - MYSQL_PASSWORD=password
       - MYSQL_USER=wordpress
+    networks:
+      - traefik-wp
 
   wordpress-fpm:
     build: ./config
-    command: bash -c 'install_wordpress && docker-entrypoint.sh php-fpm'
+    command: bash -c 'chown -R www-data:www-data /var/www/html && sudo -E -u www-data HOME=/var/www/html install_wordpress && docker-entrypoint.sh php-fpm'
     user: www-data
     working_dir: /var/www/html
     environment:
-      WORDPRESS_ADMIN_USER: admin
-      WORDPRESS_ADMIN_PASSWORD: password
-      WORDPRESS_ADMIN_EMAIL: me@torinasakura.name
       WORDPRESS_DB_HOST: wordpress-db
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_PASSWORD: password
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_TITLE: Project Starter
-      WORDPRESS_URL: https://wp.local.torinasakura.dev
-      WORDPRESS_PREVIEW_URL: https://preview.wp.local.torinasakura.dev
+      WORDPRESS_URL: http://wp.local.torinasakura.dev
+      WORDPRESS_TITLE: "WordPress"
+      WORDPRESS_ADMIN_USER: admin
+      WORDPRESS_ADMIN_PASSWORD: password
+      WORDPRESS_ADMIN_EMAIL: admin@mail.com
     volumes:
       - ./wordpress:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
     depends_on:
-      - traefik
       - wordpress-db
     networks:
-      - default
       - traefik-wp
 
   wordpress:
-    image: nginx
+    image: nginx:latest
     volumes:
       - ./wordpress:/var/www/html
-      - ./config/wordpress/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./config/nginx.conf:/etc/nginx/conf.d/default.conf
     labels:
-      - 'traefik.frontend.rule=Host:wp.local.torinasakura.dev'
-      - 'traefik.protocol=http'
-      - 'traefik.port=80'
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`wp.local.torinasakura.dev`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=le"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
     depends_on:
       - traefik
       - wordpress-fpm
     networks:
-      - default
       - traefik-wp
 
 networks:
   traefik-wp:
     driver: bridge
     ipam:
-      driver: default
       config:
         - subnet: 172.16.233.0/24
